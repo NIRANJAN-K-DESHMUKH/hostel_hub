@@ -1,0 +1,31 @@
+.title {
+    color: brown;
+    margin: 0%;
+    padding: 0% !important;
+    margin-bottom: 0% !important;
+}
+
+.mainPage {
+    align-items: center;
+    background-color: #ff0000;
+}
+
+.dashboardWrapper {
+    margin: 0%;
+    background-color: #00ff00;
+    width: 100%;
+    margin-top: 1%;
+    /* justify-content: space-between; */
+    /* position: relative; */
+    display: flex;
+}
+
+.rightdivision {
+    /* position: relative; */
+    flex: 10;
+    background-color: #2f2b3a;
+    width: 92%;
+    height: 80vh;
+    border-radius: 10px;
+    margin-right: 20px;
+}
