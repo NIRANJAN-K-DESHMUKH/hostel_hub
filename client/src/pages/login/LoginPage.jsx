@@ -30,17 +30,17 @@ const LoginPage = () => {
         </div>
         <div className="rightDiv">
 
-          <form onSubmit={handleSubmit}>
-            <h1>Hostel Hub</h1>
-            <label>Username</label>
-            <input type="text" value={username} onChange={handleUsernameChange} />
+          <form className="loginform" onSubmit={handleSubmit}>
+            <h1 id="loginformtitle">Hostel Hub</h1>
+            <label className="loginformlabel">Username</label>
+            <input type="text" className="loginforminput" id="username" value={username} onChange={handleUsernameChange} />
 
             <br /><br />
-            <label>Password</label>
-            <input type="password" value={password} onChange={handlePasswordChange} />
+            <label className="loginformlabel">Password</label>
+            <input type="password" className="loginforminput" id="password" value={password} onChange={handlePasswordChange} />
 
             <br /><br />
-            <button type="submit">Login</button>
+            <button type="submit" id="submitbutton">Login</button>
           </form>
         </div>
 

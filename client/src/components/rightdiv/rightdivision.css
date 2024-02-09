@@ -1,0 +1,16 @@
+.rightdivision {
+    flex: 10;
+    background-color: #33353c;
+    width: 92%;
+    height: 80vh;
+    border-radius: 10px;
+    margin-right: 20px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #33353c #33353c;
+}
+
+Roomcleaning {
+    width: 100%;
+    height: 80vh;
+}

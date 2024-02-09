@@ -2,7 +2,7 @@
     margin: 0;
     padding-top: 5%;
     padding-bottom: 5%;
-    background-color: #2f2b3a;
+    background-color: #18191a;
     height: 70vh;
     width: 100%;
     display: flex;
@@ -21,8 +21,8 @@
     height: 100%;
     display: flex;
     align-items: center;
-    border-radius: 3%;  
-    box-shadow: 10px 10px 20px #544872;
+    border-radius: 3%;
+    box-shadow: 0px 0px 100px #544872;
   }
 
   .leftDiv {
@@ -41,7 +41,7 @@
     border-bottom-right-radius: 3%;
     display: flex;
     align-items: center;
-  } 
+  }
 
   .leftImg {
     width: auto;
@@ -50,14 +50,14 @@
 
   }
 
-  h1 {
+  #loginformtitle {
     color: #604d96;
     font-size: xxx-large;
     margin: 0;
     margin-bottom: 5%;
   }
 
-  form {
+  .loginform {
     width: 100%;
     height: 100%;
     margin-top: 20%;
@@ -65,7 +65,7 @@
     margin-right: 10%;
   }
 
-  label {
+  .loginformlabel {
     display: block;
     margin-bottom: 2%;
     margin-left: 1%;
@@ -74,7 +74,7 @@
     color: #ffffff;
   }
 
-  input {
+  .loginforminput {
     width: 90%;
     height: 40px;
     padding: 2%;
@@ -89,34 +89,34 @@
     color: #271c4d;
   }
 
-  input:focus {
+  #loginforminput:focus {
     outline: none;
     box-shadow: 10px 10px 10px #121212;
     background-color: #beafe0;
   }
 
-  button {
+  #submitbutton {
     background-color: #604d96;
     color: white;
     border: none;
-    border-radius: 20px;    
+    border-radius: 20px;
     cursor: pointer;
     width: 50%;
     height: 50px;
     margin-left: 20%;
     margin-top: 5%;
     font-size: large;
-    font-weight: 500;  
-    }
+    font-weight: 500;
+  }
 
-  button:hover {
+  #submitbutton:hover {
     background-color: #544872;
     box-shadow: 10px 10px 10px #121212;
 
   }
 
-  button:active {
-    transform: scale(0.9); 
+  #submitbutton:active {
+    transform: scale(0.9);
     border-radius: 40px;
     box-shadow: 10px 10px 10px #121212;
 
