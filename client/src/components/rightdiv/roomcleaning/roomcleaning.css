@@ -6,8 +6,18 @@
     width: 50%;
 }
 
+.studentdetails {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0px;
+    margin-left: 35%;
+    width: 50%;
+    font-weight: bold;
+    color: white;
+}
+
 .roomcleaningInput {
-    width: 300px;
+    width: 100%;
     height: 40px;
     padding: 10px;
     margin-bottom: 10px;
@@ -29,18 +39,28 @@
     background-color: #0056b3;
 }
 
-/* Media Queries */
-@media only screen and (max-width: 768px) {
-    .roomcleaningForm {
-        width: 80%;
-        margin-left: 0;
-    }
+.roomcleaningButton {
+    background-color: #604d96;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 50%;
+    height: 50px;
+    margin-left: 25%;
+    margin-top: 5%;
+    font-size: large;
+    font-weight: 500;
+}
 
-    .roomcleaningInput {
-        width: 100%;
-    }
+.roomcleaningButton:hover {
+    background-color: #544382;
+    box-shadow: 10px 10px 10px #121212;
 
-    .roomcleaningButton {
-        margin-left: 0;
-    }
+}
+
+.roomcleaningButton:active {
+    transform: scale(0.9);
+    border-radius: 40px;
+    box-shadow: 10px 10px 5px #121212;
 }

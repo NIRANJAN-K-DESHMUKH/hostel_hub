@@ -89,7 +89,7 @@
     color: #271c4d;
   }
 
-  #loginforminput:focus {
+  .loginforminput:focus {
     outline: none;
     box-shadow: 10px 10px 10px #121212;
     background-color: #beafe0;

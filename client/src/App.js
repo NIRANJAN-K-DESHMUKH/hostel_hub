@@ -4,8 +4,9 @@ import LoginPage from './pages/login/LoginPage.jsx';
 function App() {
   return (
     <div className="App">
-      <DashboardPage />
       {/* <LoginPage /> */}
+      <DashboardPage />
+
     </div>
   );
 }

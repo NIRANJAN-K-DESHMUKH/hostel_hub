@@ -1,13 +1,14 @@
 .rightdivision {
     flex: 10;
     background-color: #33353c;
-    width: 92%;
+    width: auto;
     height: 80vh;
     border-radius: 10px;
-    margin-right: 20px;
+    /* margin-right: 10px; */
     overflow-y: scroll;
-    scrollbar-width: thin;
-    scrollbar-color: #33353c #33353c;
+    scrollbar-width: none;
+    /* padding-right: 5px; */
+    scrollbar-color: #18191a #18191a;
 }
 
 Roomcleaning {
