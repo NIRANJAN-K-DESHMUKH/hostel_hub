@@ -1,4 +1,4 @@
-const http = require('http'); // Import Node.js core module
+const http = require('http');
 
 const express = require('express'); // Import express
 
