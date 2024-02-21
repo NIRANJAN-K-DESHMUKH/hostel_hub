@@ -6,10 +6,10 @@ import Complaint from './complaint/Complaint.jsx'
 const RightDivision = () => {
     return (
         <div className='rightdivision'>
-            <Dashboard />
-            <Roomcleaning />
-            <Roomcleaning />
-            <Roomcleaning />
+            {/* <Dashboard /> */}
+            {/* <Roomcleaning /> */}
+            {/* <Roomcleaning /> */}
+            {/* <Roomcleaning /> */}
             <Complaint />
 
 
