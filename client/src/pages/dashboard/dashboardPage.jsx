@@ -3,6 +3,7 @@ import Topbar from '../../components/topbar/Topbar.jsx';
 import "./dashboardpage.css";
 import Navbar from '../../components/navbar/Navbar.jsx';
 import RightDivision from '../../components/rightdiv/RightDivision.jsx';
+
 const DashboardPage = () => {
 
     return (

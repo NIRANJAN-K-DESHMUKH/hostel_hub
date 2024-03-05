@@ -1,5 +1,8 @@
 import "./login.css";
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+
+
 const LoginPage = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -40,7 +43,11 @@ const LoginPage = () => {
             <input type="password" className="loginforminput" id="password" value={password} onChange={handlePasswordChange} />
 
             <br /><br />
-            <button type="submit" id="submitbutton">Login</button>
+            
+            <Link to="/dashboard" style={{ textDecoration: "none" }}>
+              <button type="submit" id="submitbutton">Login</button>                   
+            </Link>
+
           </form>
         </div>
 
