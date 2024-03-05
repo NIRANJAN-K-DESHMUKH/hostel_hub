@@ -1,10 +1,9 @@
-import DashboardPage from './pages/dashboard/dashboardPage.jsx';
+import DashboardPage from './pages/dashboard/DashboardPage.jsx';
 import LoginPage from './pages/login/LoginPage.jsx';
 import {
   BrowserRouter,
   Routes,
-  Route,
-  Navigate
+  Route
 } from "react-router-dom";
 
 const App = () => {

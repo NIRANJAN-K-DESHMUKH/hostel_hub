@@ -1,20 +1,19 @@
-import React from 'react'
-import './rightdivision.css'
-import Dashboard from './dashboard/Dashboard.jsx'
-import Roomcleaning from './roomcleaning/Roomcleaning.jsx'
-import Complaint from './complaint/Complaint.jsx'
-import show from './show.js'
+import React from 'react';
+import './rightdivision.css';
+import Dashboard from './dashboard/Dashboard.jsx';
+import Roomcleaning from './roomcleaning/Roomcleaning.jsx';
+import Complaint from './complaint/Complaint.jsx';
+import { useSelector } from 'react-redux';
 
 const RightDivision = () => {
-    const handleClickDashboard = () => {
-        show(".dashboardwrapper");
-        console.log("dashboardwrapper");
-    }
+    const showComponents = useSelector((state) => {
+        return state.Reducers.showComponents;
+    });
     return (
         <div className='rightdivision'>
-            <Dashboard />
-            <Roomcleaning />
-            <Complaint />
+            <Dashboard key={1} show={showComponents[0].show}/>
+            <Roomcleaning key={2} show={showComponents[1].show}/>
+            <Complaint key={3} show={showComponents[2].show}/>
         </div>
     )
 }
