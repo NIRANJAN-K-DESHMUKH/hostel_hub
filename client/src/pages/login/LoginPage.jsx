@@ -43,9 +43,9 @@ const LoginPage = () => {
             <input type="password" className="loginforminput" id="password" value={password} onChange={handlePasswordChange} />
 
             <br /><br />
-            
+
             <Link to="/dashboard" style={{ textDecoration: "none" }}>
-              <button type="submit" id="submitbutton">Login</button>                   
+              <button type="submit" id="submitbutton">Login</button>
             </Link>
 
           </form>

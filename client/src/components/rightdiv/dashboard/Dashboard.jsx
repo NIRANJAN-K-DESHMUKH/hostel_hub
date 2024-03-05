@@ -1,8 +1,7 @@
 import React from 'react'
-
 function Dashboard() {
     return (
-        <div>
+        <div className='dashboardwrapper'>
             <h1 className='title'>Dashboard</h1>
         </div>
     )

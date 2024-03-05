@@ -3,7 +3,7 @@ import './complaint.css'
 
 function Complaint() {
     return (
-        <div>
+        <div className='complaintwrapper'>
             <h1 className='title'>Complaint</h1>
             <form className='complaintForm'>
                 <p className='studentdetails'>Name: Nimesh Bhavsar</p>
