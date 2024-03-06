@@ -1,10 +1,20 @@
-const http = require('http');       // Import Node.js core module
+import http from "http";       // Import Node.js core module
+import mongoose from 'mongoose';
+import 'dotenv/config';
+import { log } from 'console';
+import express from "express";
+import bodyParser from "body-parser";
+import complaintModel from "./models/complaintModel.js";
 
-const express = require('express'); // Import express
+// const express = require('express'); // Import express
 
 const port = 8080;  // Define a port
-const app = require('express')();   // Import express
+const app = express();   // Import express
 app.use(express.json()); // to support JSON-encoded bodies
+app.use(bodyParser.json({ type: 'application/*+json' }));
+
+// app.use("/hostel/complaints")
+
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);
@@ -28,3 +38,29 @@ app.get('/compreq/', (req, res) => {
             "Message": `${message}`
         });
 });
+
+
+try {
+    mongoose.connect("mongodb+srv://niranjandeshmukh371:"+process.env.PASS+"@cluster0.gyghlfc.mongodb.net/"); 
+    console.log("Database connection success!");
+} catch (e){
+    console.log(e);
+}
+
+ app.post("/postcomplaint", function (req, res) {
+    const complaint = new complaintModel({
+      name: req.body.name,
+      email: req.body.email,
+      room_number: req.body.room_number,
+      phone_no: req.body.phone_no,
+      comments: req.body.comments
+    });
+    try {
+        complaint.save();
+        res.send(complaint);
+
+    } catch (e){
+        console.log(e);
+    }
+    
+ });
