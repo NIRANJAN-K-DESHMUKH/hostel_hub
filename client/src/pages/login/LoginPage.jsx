@@ -36,11 +36,27 @@ const LoginPage = () => {
           <form className="loginform" onSubmit={handleSubmit}>
             <h1 id="loginformtitle">Hostel Hub</h1>
             <label className="loginformlabel">Username</label>
-            <input type="text" className="loginforminput" id="username" value={username} onChange={handleUsernameChange} />
+            <input 
+              type="email" 
+              className="loginforminput" 
+              id="username" 
+              value={username} 
+              onChange={handleUsernameChange}
+              placeholder="Enter your vit-email as username"
+              required
+            />
 
             <br /><br />
             <label className="loginformlabel">Password</label>
-            <input type="password" className="loginforminput" id="password" value={password} onChange={handlePasswordChange} />
+            <input 
+              type="password" 
+              className="loginforminput" 
+              id="password" 
+              value={password} 
+              onChange={handlePasswordChange} 
+              placeholder="Enter your Reg. No. as password"
+              required
+            />
 
             <br /><br />
 
