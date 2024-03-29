@@ -4,15 +4,14 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
-import complaintModel from "./models/complaintModel.js";
-import cleaningreqModel from "./models/cleaningreqModel.js";
-import adminModel from "./models/adminModel.js";
-import studentModel from "./models/studentModel.js";
-// import {adminRoute} from "./routes/admin.js";
-// import {authRoute} from "./routes/auth.js";
+import Complaint from "./models/Complaint.js";
+import CleaningReq from "./models/CleaningReq.js";
+import Admin from "./models/Admin.js";
+import Student from "./models/Student.js";
+import {authRoute} from "./routes/auth.js";
 // import {cleaningreqRoute} from "./routes/cleaningreq.js";
 // import {complaintRoute} from "./routes/complaint.js";
-// import {studentRoute} from "./routes/student.js";
+// import {workerRoute} from "./routes/worker.js";
 
 const port = 8080;   // Define a port
 const app = express();   // Import express
@@ -29,9 +28,8 @@ try {
     console.log(e);
 }
 
-// app.use("/api/auth", authRoute);
-// app.use("/api/student", studentRoute);
-// app.use("/api/admin", adminRoute);
+app.use("/api/auth", authRoute);
+// app.use("/api/worker", workerRoute);
 // app.use("/api/complaint", complaintRoute);
 // app.use("/api/cleaningreq", cleaningreqRoute);
 

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 //schema design
-const complaintSchema = new mongoose.Schema(
+const cleaningreqSchema = new mongoose.Schema(
   {
     studentName: {
       type: String,
@@ -23,11 +23,11 @@ const complaintSchema = new mongoose.Schema(
     studentComments: {
         type: String,
         required: [true, "comments are required"],
-    },
+      },
     workerId: {
       type: String
     },
-    isResolvedStatus: {
+    isCompletedStatus: {
       type: Boolean,
       required: [true, "status is required"],
     }
@@ -36,6 +36,6 @@ const complaintSchema = new mongoose.Schema(
 );
 
 //export
-const complaintModel = mongoose.model("complaints", complaintSchema);
+const CleaningReq= mongoose.model("cleaningreq", cleaningreqSchema);
 
-export default complaintModel;
+export default CleaningReq;
