@@ -24,9 +24,9 @@ router.post("/register", async (req, res) => {
   
       //save student and respond
       const student = await newStudent.save();
-      res.status(200).json(student);
+      return res.status(200).json(student);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   });
 
@@ -36,18 +36,16 @@ router.post("/register", async (req, res) => {
       const student = await Student.findOne({ studentEmail: req.body.studentEmail });
     
       if(!student) {
-        res.status(404).json("student not found");
-        return;
+        return res.status(404).json("student not found");
       } else {
         const validPassword = await bcrypt.compare(req.body.password, student.password);
         if(!validPassword) {
-            res.status(400).json("wrong password");
-            return;
+            return res.status(400).json("wrong password");
           }
       }
-      res.status(200).json(student);
+      return res.status(200).json(student);
     } catch (err) {
-      res.status(500).json(err);
+      return res.status(500).json(err);
     }
   });
 

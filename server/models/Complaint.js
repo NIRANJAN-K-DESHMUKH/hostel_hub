@@ -3,33 +3,30 @@ import mongoose from "mongoose";
 //schema design
 const complaintSchema = new mongoose.Schema(
   {
-    studentName: {
+    studentRegNo: {
       type: String,
-      required: [true, "name is required"],
-    },
-    studentEmail: {
-      type: String,
-      required: [true, "email is required and should be unique"],
-      unique: true,
+      required: [true, "RegNo is required"]
     },
     room_number: {
       type: String,
-      required: [true, "room number is required"],
-    },
-    studentPhone_no: {
-        type: String,
-        required: [true, "phone number is required"],
+      required: [true, "room number is required"]
     },
     studentComments: {
-        type: String,
-        required: [true, "comments are required"],
+      type: String,
+      required: [true, "comments are required"]
     },
     workerId: {
       type: String
     },
     isResolvedStatus: {
       type: Boolean,
-      required: [true, "status is required"],
+      required: [true, "status is required"]
+    },
+    otp: {
+      type: String
+    },
+    email: {
+      type: String
     }
   },
   { timestamps: true }

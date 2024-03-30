@@ -3,27 +3,19 @@ import mongoose from "mongoose";
 //schema design
 const cleaningreqSchema = new mongoose.Schema(
   {
-    studentName: {
+    studentRegNo: {
       type: String,
-      required: [true, "name is required"],
-    },
-    studentEmail: {
-      type: String,
-      required: [true, "email is required and should be unique"],
+      required: [true, "RegNo is required"],
       unique: true,
     },
     room_number: {
       type: String,
       required: [true, "room number is required"],
     },
-    studentPhone_no: {
-        type: String,
-        required: [true, "phone number is required"],
-    },
     studentComments: {
         type: String,
         required: [true, "comments are required"],
-      },
+    },
     workerId: {
       type: String
     },
