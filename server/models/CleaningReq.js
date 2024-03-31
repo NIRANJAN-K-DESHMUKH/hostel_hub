@@ -10,18 +10,20 @@ const cleaningreqSchema = new mongoose.Schema(
     },
     room_number: {
       type: String,
-      required: [true, "room number is required"],
+      required: [true, "room number is required"]
     },
     studentComments: {
         type: String,
-        required: [true, "comments are required"],
     },
     workerId: {
       type: String
     },
     isCompletedStatus: {
       type: Boolean,
-      required: [true, "status is required"],
+      required: [true, "status is required"]
+    },
+    otp: {
+      type: String
     }
   },
   { timestamps: true }

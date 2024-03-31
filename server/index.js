@@ -4,17 +4,13 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
-import Complaint from "./models/Complaint.js";
-import CleaningReq from "./models/CleaningReq.js";
-import Admin from "./models/Admin.js";
-import Student from "./models/Student.js";
 import {authRoute} from "./routes/auth.js";
-// import {cleaningreqRoute} from "./routes/cleaningreq.js";
+import {cleaningreqRoute} from "./routes/cleaningreq.js";
 import {complaintRoute} from "./routes/complaint.js";
 import {workerRoute} from "./routes/worker.js";
 
-const port = 8080;   // Define a port
-const app = express();   // Import express
+const port = 8080;   
+const app = express();  
 const router = express.Router();
 
 app.use(express.json()); // to support JSON-encoded bodies
@@ -31,7 +27,7 @@ try {
 app.use("/api/auth", authRoute);
 app.use("/api/worker", workerRoute);
 app.use("/api/complaint", complaintRoute);
-// app.use("/api/cleaningreq", cleaningreqRoute);
+app.use("/api/cleaningreq", cleaningreqRoute);
 
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}/`);

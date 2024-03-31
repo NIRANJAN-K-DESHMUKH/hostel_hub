@@ -41,7 +41,7 @@ router.get("/", async (req, res) => {
     } else {
         return res.status(403).json("You are not Admin!");
     }
-  });
+});
 
 // update worker
 router.put("/:id", async (req, res) => {
@@ -57,7 +57,7 @@ router.put("/:id", async (req, res) => {
     } else {
         return res.status(403).json("You are not Admin!");
     }
-  });
+});
 
 
 // delete
@@ -72,7 +72,7 @@ router.delete("/:id", async (req, res) => {
     } else {
       return res.status(403).json("You are not Admin!");
     }
-  });
+});
 
 
 export { router as workerRoute };
