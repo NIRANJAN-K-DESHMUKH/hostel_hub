@@ -1,5 +1,5 @@
 
-const CleaningCard = (props) => {
+const ComplaintCard = (props) => {
     
 
     return (
@@ -9,4 +9,4 @@ const CleaningCard = (props) => {
     )
 }
 
-export default CleaningCard;
+export default ComplaintCard;

@@ -11,6 +11,8 @@ const Dashboard = (props) => {
       const fetchCleaningReqs = async () => {
         try {
           const res = await axios.post("/api/cleaningreq/all/" + studentRegNo, {isStudent: true});
+          // console.log("cleaningReqs");
+
           // setCleaningReqs(
           //   res.data.sort((p1, p2) => {
           //     return new Date(p2.createdAt) - new Date(p1.createdAt);
@@ -19,13 +21,13 @@ const Dashboard = (props) => {
           setCleaningReqs(
             res.data
           );
-          console.log(cleaningReqs);
+          // console.log(cleaningReqs);
         } catch (error) {
           console.log(error)
         }
       };
       fetchCleaningReqs();
-    },[studentRegNo]);
+    },[]);
 
     // const fetchCleaningReqs = async () => {
     //   try {
@@ -58,7 +60,7 @@ const Dashboard = (props) => {
                  <h1 className='title'>Dashboard</h1>
                  <div>
                     {cleaningReqs.map((c) => (
-                      <CleaningCard key={c[0]._id} clean={c[0].studentRegNo} />
+                      <CleaningCard key={c[0]._id} regNo={c[0].studentRegNo} />
                     ))}
                  </div>
                  <span>hello</span>

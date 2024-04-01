@@ -1,30 +1,34 @@
 import "./login.css";
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { LoginStart, LoginSuccess, LoginFailure } from '../../reducer_actions/Actions.jsx';
+import { CircularProgress } from "@material-ui/core";
+import {store} from "../../store.jsx";
+
 
 
 const LoginPage = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const email = useRef();
+  const password = useRef();
+  const dispatch = useDispatch();
+  const isFetching = useSelector((state) => {
+    return state.Reducers.isFetching;
+});
 
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
-  };
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add authentication logic here
-    if (username === "admin" && password === "admin") {
-      console.log('Username:', username);
-      console.log('Password:', password);
-    } else {
-      console.log('Invalid');
-
+    dispatch(LoginStart());
+    try {
+      const res = await axios.post("/api/auth/login", { studentEmail: email.current.value, password: password.current.value });
+      dispatch(LoginSuccess({studentEmail: res.data.studentEmail, studentRegNo: res.data.studentRegNo}));
+    } catch (err) {
+     dispatch(LoginFailure());
     }
-
   };
+
   return (
     <div className='login'>
       <div className="loginWrapper">
@@ -39,11 +43,10 @@ const LoginPage = () => {
             <input 
               type="email" 
               className="loginforminput" 
-              id="username" 
-              value={username} 
-              onChange={handleUsernameChange}
               placeholder="Enter your vit-email as username"
               required
+              autoComplete="true"
+              ref={email}
             />
 
             <br /><br />
@@ -51,18 +54,25 @@ const LoginPage = () => {
             <input 
               type="password" 
               className="loginforminput" 
-              id="password" 
-              value={password} 
-              onChange={handlePasswordChange} 
               placeholder="Enter your Reg. No. as password"
+              minLength="8"
+              autoComplete="true"
               required
+              ref={password}
             />
 
             <br /><br />
 
-            <Link to="/dashboard" style={{ textDecoration: "none" }}>
-              <button type="submit" id="submitbutton">Login</button>
-            </Link>
+            {/* <Link to="/dashboard" style={{ textDecoration: "none" }}> */}
+              <button type="submit" id="submitbutton">
+                {isFetching ? (
+                <CircularProgress color="white" size="30px" />
+                ) : (
+                "Login"
+                )}
+                login
+              </button>
+            {/* </Link> */}
 
           </form>
         </div>
