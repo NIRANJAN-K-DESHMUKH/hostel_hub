@@ -45,7 +45,7 @@ router.get("/", async (req, res) => {
 });
 
 //get all cleaningreqs by all roommates
-router.get("/all/:studentRegNo", async (req, res) => {
+router.post("/all/:studentRegNo", async (req, res) => {
   if(req.body.isStudent) {
     try {
       const currentStudent = await Student.findOne({studentRegNo: req.params.studentRegNo});  

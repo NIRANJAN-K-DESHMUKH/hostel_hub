@@ -30,7 +30,7 @@ app.use("/api/complaint", complaintRoute);
 app.use("/api/cleaningreq", cleaningreqRoute);
 
 app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
+    console.log(`Server running at http://localhost:${port}`);
 }); 
 
 
