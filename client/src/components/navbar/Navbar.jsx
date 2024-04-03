@@ -4,10 +4,9 @@ import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from "react-router-dom";
-// import RightDivision from '../rightdiv/RightDivision.jsx';
+// import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { setShowComponent } from '../../reducer_actions/Actions.jsx';
+import { LogOut, setShowComponent } from '../../reducer_actions/Actions.jsx';
 
 const Navbar = () => {
    
@@ -22,6 +21,11 @@ const Navbar = () => {
     const handleClickComplaint = () => {
         dispatch(setShowComponent("complaint"));
     }
+    const handleLogOut = () => {
+        localStorage.setItem("user", null);
+        dispatch(LogOut());
+    }
+
     return (
         <div className='leftdivision'>
             <ul>
@@ -38,12 +42,12 @@ const Navbar = () => {
                     <RateReviewIcon className='logoimage' />
                     <span className='listItemName'>Complaint</span>
                 </li>
-                <Link to="/login" style={{ textDecoration: "none" }}>
+                {/* <Link to="/login" style={{ textDecoration: "none" }}> */}
                 <li className='listItem_leftdiv'>
                     <LogoutIcon className='logoimage' />
-                    <span className='listItemName'>Logout</span>
+                    <span className='listItemName' onClick={handleLogOut}>Logout</span>
                 </li>
-                </Link>
+                {/* </Link> */}
             </ul>
 
         </div>
