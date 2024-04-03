@@ -25,4 +25,21 @@ const LogOut = () => ({
     type: "LOGOUT"
 });
 
-export {setShowComponent, LoginStart, LoginSuccess, LoginFailure, LogOut};
+const LoginStartAdmin = () => ({
+    type: "ADMIN_LOGIN_START"
+});
+  
+const LoginSuccessAdmin = (admin) => ({
+    type: "ADMIN_LOGIN_SUCCESS",
+    payload: admin,
+});
+  
+const LoginFailureAdmin = () => ({
+    type: "ADMIN_LOGIN_FAILURE"
+});
+
+const LogOutAdmin = () => ({
+    type: "ADMIN_LOGOUT"
+});
+
+export {setShowComponent, LoginStart, LoginSuccess, LoginFailure, LogOut , LoginStartAdmin, LoginSuccessAdmin, LoginFailureAdmin, LogOutAdmin};

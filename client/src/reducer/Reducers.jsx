@@ -9,7 +9,11 @@ const initialData = {
     ],
     user:JSON.parse(localStorage.getItem("user")) || null,
     isFetching: false,
-    error: false
+    error: false,
+    admin:JSON.parse(localStorage.getItem("admin")) || null,
+    isFetchingAdmin: false,
+    errorAdmin: false,
+
 }
 
 const Reducers = (state=initialData, action) => {
@@ -52,6 +56,34 @@ const Reducers = (state=initialData, action) => {
                 error: true,
             }
         case "LOGOUT":
+            return {
+                ...state,
+                user: null,
+                isFetching: false,
+                error: false,
+            }
+        case "ADMIN_LOGIN_START":
+            return {
+                ...state,
+                user: null,
+                isFetching: true,
+                error: false,
+            }
+        case "ADMIN_LOGIN_SUCCESS":
+            return {
+                ...state,
+                user: action.payload,
+                isFetching: false,
+                error: false,
+            }
+        case "ADMIN_LOGIN_FAILURE":
+            return {
+                ...state,
+                user: null,
+                isFetching: false,
+                error: true,
+            }
+        case "ADMIN_LOGOUT":
             return {
                 ...state,
                 user: null,
