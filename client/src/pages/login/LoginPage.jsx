@@ -1,12 +1,10 @@
 import "./login.css";
 import React, { useRef } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import axios from "axios";
 import { LoginStart, LoginSuccess, LoginFailure } from '../../reducer_actions/Actions.jsx';
 import { CircularProgress } from "@material-ui/core";
-import {store} from "../../store.jsx";
-
 
 
 const LoginPage = () => {
@@ -15,7 +13,7 @@ const LoginPage = () => {
   const dispatch = useDispatch();
   const isFetching = useSelector((state) => {
     return state.Reducers.isFetching;
-});
+  });
 
 
   const handleSubmit = async (e) => {
@@ -23,7 +21,16 @@ const LoginPage = () => {
     dispatch(LoginStart());
     try {
       const res = await axios.post("/api/auth/login", { studentEmail: email.current.value, password: password.current.value });
-      dispatch(LoginSuccess({studentEmail: res.data.studentEmail, studentRegNo: res.data.studentRegNo}));
+      dispatch(LoginSuccess(
+        {
+          studentName: res.data.studentName,
+          studentEmail: res.data.studentEmail, 
+          studentRegNo: res.data.studentRegNo, 
+          room_number: res.data.room_number, 
+          studentPhone_no: res.data.studentPhone_no, 
+          hostelBlockName: res.data.hostelBlockName, 
+          hostelFloorNo: res.data.hostelFloorNo
+        }));
     } catch (err) {
      dispatch(LoginFailure());
     }
@@ -65,12 +72,7 @@ const LoginPage = () => {
 
             {/* <Link to="/dashboard" style={{ textDecoration: "none" }}> */}
               <button type="submit" id="submitbutton">
-                {isFetching ? (
-                <CircularProgress color="white" size="30px" />
-                ) : (
-                "Login"
-                )}
-                login
+                {isFetching ? ( <CircularProgress color="inherit" size="30px"/> ) : ( "Login" )}
               </button>
             {/* </Link> */}
 
