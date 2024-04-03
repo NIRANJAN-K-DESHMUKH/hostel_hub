@@ -65,30 +65,30 @@ const Reducers = (state=initialData, action) => {
         case "ADMIN_LOGIN_START":
             return {
                 ...state,
-                user: null,
-                isFetching: true,
-                error: false,
+                admin: null,
+                isFetchingAdmin: true,
+                errorAdmin: false,
             }
         case "ADMIN_LOGIN_SUCCESS":
             return {
                 ...state,
-                user: action.payload,
-                isFetching: false,
-                error: false,
+                admin: action.payload,
+                isFetchingAdmin: false,
+                errorAdmin: false,
             }
         case "ADMIN_LOGIN_FAILURE":
             return {
                 ...state,
-                user: null,
-                isFetching: false,
-                error: true,
+                admin: null,
+                isFetchingAdmin: false,
+                errorAdmin: true,
             }
         case "ADMIN_LOGOUT":
             return {
                 ...state,
-                user: null,
-                isFetching: false,
-                error: false,
+                admin: null,
+                isFetchingAdmin: false,
+                errorAdmin: false,
             }
         default:
             return state;

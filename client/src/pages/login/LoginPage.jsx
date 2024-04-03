@@ -48,7 +48,7 @@ const LoginPage = () => {
     e.preventDefault();
     dispatch(LoginStartAdmin());
     try {
-      const res = await axios.post("/api/auth/admin/login", { adminEmail: adminEmail.current.value, password: studentPassword.current.value });
+      const res = await axios.post("/api/auth/admin/login", { adminEmail: adminEmail.current.value, password: adminPassword.current.value });
       dispatch(LoginSuccessAdmin(
         {
           adminName: res.data.adminName,
