@@ -1,26 +1,34 @@
 import "./login.css";
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 // import { Link } from "react-router-dom";
 import axios from "axios";
-import { LoginStart, LoginSuccess, LoginFailure } from '../../reducer_actions/Actions.jsx';
+import { LoginStart, LoginSuccess, LoginFailure, LoginStartAdmin, LoginSuccessAdmin, LoginFailureAdmin } from '../../reducer_actions/Actions.jsx';
 import { CircularProgress } from "@material-ui/core";
 
 
 const LoginPage = () => {
-  const email = useRef();
-  const password = useRef();
+
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const handleLoginSelector = () => {
+    isAdmin ? setIsAdmin(false) : setIsAdmin(true);
+  };
+  
+  const studentEmail = useRef();
+  const studentPassword = useRef();
+  const adminEmail = useRef();
+  const adminPassword = useRef();
   const dispatch = useDispatch();
   const isFetching = useSelector((state) => {
     return state.Reducers.isFetching;
   });
 
-
-  const handleSubmit = async (e) => {
+  const handleSubmitStudent = async (e) => {
     e.preventDefault();
     dispatch(LoginStart());
     try {
-      const res = await axios.post("/api/auth/login", { studentEmail: email.current.value, password: password.current.value });
+      const res = await axios.post("/api/auth/login", { studentEmail: studentEmail.current.value, password: studentPassword.current.value });
       dispatch(LoginSuccess(
         {
           studentName: res.data.studentName,
@@ -36,6 +44,24 @@ const LoginPage = () => {
     }
   };
 
+  const handleSubmitAdmin = async (e) => {
+    e.preventDefault();
+    dispatch(LoginStartAdmin());
+    try {
+      const res = await axios.post("/api/auth/admin/login", { adminEmail: adminEmail.current.value, password: studentPassword.current.value });
+      dispatch(LoginSuccessAdmin(
+        {
+          adminName: res.data.adminName,
+          adminId: res.data.adminId, 
+          adminEmail: res.data.adminEmail, 
+          adminPhone_no: res.data.adminPhone_no, 
+          hostelBlockName: res.data.hostelBlockName
+        }));
+    } catch (err) {
+     dispatch(LoginFailureAdmin());
+    }
+  };
+
   return (
     <div className='login'>
       <div className="loginWrapper">
@@ -44,39 +70,84 @@ const LoginPage = () => {
         </div>
         <div className="rightDiv">
 
-          <form className="loginform" onSubmit={handleSubmit}>
+          <div className="loginform">
             <h1 id="loginformtitle">Hostel Hub</h1>
-            <label className="loginformlabel">Username</label>
-            <input 
-              type="email" 
-              className="loginforminput" 
-              placeholder="Enter your vit-email as username"
-              required
-              autoComplete="true"
-              ref={email}
-            />
+            {
+              isAdmin 
+              ? 
+              <form onSubmit={handleSubmitAdmin}>
+                <h3 className="loginSelector">
+                  <span className="studSelector" onClick={handleLoginSelector}>Student</span>
+                  &nbsp;&nbsp;
+                  <span>Admin</span>
+                </h3>
+                <label className="loginformlabel">Username</label>
+                <input
+                  type="email" 
+                  className="loginforminput" 
+                  placeholder="Enter your admin-email as username"
+                  required
+                  autoComplete="true"
+                  ref={adminEmail}
+                />
 
-            <br /><br />
-            <label className="loginformlabel">Password</label>
-            <input 
-              type="password" 
-              className="loginforminput" 
-              placeholder="Enter your Reg. No. as password"
-              minLength="8"
-              autoComplete="true"
-              required
-              ref={password}
-            />
+                <br /><br />
+                <label className="loginformlabel">Password</label>
+                <input 
+                  type="password" 
+                  className="loginforminput" 
+                  placeholder="Enter your AdminId as password"
+                  minLength="8"
+                  autoComplete="true"
+                  required
+                  ref={adminPassword}
+                />
 
-            <br /><br />
+                <br /><br />
 
-            {/* <Link to="/dashboard" style={{ textDecoration: "none" }}> */}
-              <button type="submit" id="submitbutton">
-                {isFetching ? ( <CircularProgress color="inherit" size="30px"/> ) : ( "Login" )}
-              </button>
-            {/* </Link> */}
+                  <button type="submit" id="submitbutton">
+                    {isFetching ? ( <CircularProgress color="inherit" size="30px"/> ) : ( "Login" )}
+                  </button>
+              </form>  
+              : 
+              <form onSubmit={handleSubmitStudent}>
+                <h3 className="loginSelector">
+                  <span>Student</span>
+                  &nbsp;&nbsp;
+                  <span className="adminSelector" onClick={handleLoginSelector}>Admin</span>
+                </h3>
+                <label className="loginformlabel">Username</label>
+                <input 
+                  type="email" 
+                  className="loginforminput" 
+                  placeholder="Enter your vit-email as username"
+                  required
+                  autoComplete="true"
+                  ref={studentEmail}
+                />
 
-          </form>
+                <br /><br />
+                <label className="loginformlabel">Password</label>
+                <input 
+                  type="password" 
+                  className="loginforminput" 
+                  placeholder="Enter your Reg. No. as password"
+                  minLength="8"
+                  autoComplete="true"
+                  required
+                  ref={studentPassword}
+                />
+
+                <br /><br />
+
+                  <button type="submit" id="submitbutton">
+                    {isFetching ? ( <CircularProgress color="inherit" size="30px"/> ) : ( "Login" )}
+                  </button>
+              </form> 
+            }
+            
+
+          </div>
         </div>
 
       </div>
