@@ -4,7 +4,7 @@ const CleaningCard = (props) => {
 
     return (
       <>
-       {props.regNo}
+       {props.cleaningreqs}
       </>
     )
 }

@@ -14,16 +14,16 @@ router.post("/register", async (req, res) => {
               studentRegNo: req.body.studentRegNo,
               room_number: req.body.room_number,
               studentComments: req.body.studentComments,
-              workerId: req.body.workerId,
-              isCompletedStatus: req.body.isCompletedStatus,
-              otp: req.body.otp
+              workerId: "",
+              isCompletedStatus: false,
+              otp: Math.floor(100000 + Math.random() * 900000)
             });
            
             //save cleaningreq and respond
             const cleaningreq = await newCleaningReq.save();
-             res.status(200).json(cleaningreq);
+             return res.status(200).json(cleaningreq);
           } catch (err) {
-             res.status(500).json(err);
+            return res.status(500).json(err);
           }    
     } else {
         return res.status(403).json("You are not Student!");

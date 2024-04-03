@@ -1,23 +1,53 @@
-import React from 'react'
-import './roomcleaning.css'
+import React, { useState } from 'react';
+import './roomcleaning.css';
+import axios from "axios";
+import { useSelector } from 'react-redux';
+
 function Roomcleaning(props) {
     const toShow = props.show;
+    const [comments, setComments] = useState("");
+
+    const student = useSelector((state) => {
+      return state.Reducers.user;
+    });
+  
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      if(student){
+        try {
+          const res = await axios.post("/api/cleaningreq/register", 
+            { studentRegNo: student.studentRegNo,
+              room_number: student.room_number,
+              studentComments: comments,
+              isStudent: true
+            }
+          );
+          setComments("");
+        } catch (error) {
+          console.log("Error in posting cleaning req");
+        }
+      } else {
+        console.log("Student not signed in!");
+      }
+    }
+
     return (
       <>
         { toShow 
             ? <div className='roomcleaningwrapper'>
                 <h1 className='title'>Room Cleaning</h1>
-                <form className='roomcleaningForm'>
-                    <p className='studentdetails'>Name: Nimesh Bhavsar</p>
-                    <p className='studentdetails'>Room Number: 101</p>
-                    <p className='studentdetails'>Phone Number: 1234567890</p>
-                    <p className='studentdetails'>Room Cleaning Request</p>
-                    {/* <input type='text' id='roomNumber' placeholder='Enter your room number (AutoRetrived)' className='roomcleaningInput'></input>
-                    <input type='text' id='name' placeholder='Enter your name (AutoRetrived)' className='roomcleaningInput'></input>
-                    <input type='text' id='phoneNumber' placeholder='Enter your phone number (AutoRetrived)' className='roomcleaningInput'></input> */}
+                <form className='roomcleaningForm' onSubmit={handleSubmit}>
+                  <p name="studName" className='studentdetails'>Name: {student.studentName}</p>
+                  <p name="studRoomNo" className='studentdetails'>Hostel Block - Room No.: {student.hostelBlockName}-{student.room_number}</p>
 
-                    <textarea id='comments' placeholder='Comments' className='roomcleaningInput'></textarea>
-                    <button className='roomcleaningButton' >Submit Request</button>
+                    {/* <p name="studName" className='studentdetails'>Reg. No.: {student.studentRegNo}</p>
+                    <p name="studRoomNo" className='studentdetails'>Hostel Block: {student.hostelBlockName}</p>
+                    <p name="studRoomNo" className='studentdetails'>Floor No.: {student.hostelFloorNo}</p>
+                    <p name="studRoomNo" className='studentdetails'>Room Number: {student.room_number}</p>
+                    <p name="studPhoneNo" className='studentdetails'>Phone Number: {student.studentPhone_no}</p>
+                    <p name="studEmailId" className='studentdetails'>Email: {student.studentEmail}</p> */}
+                    <textarea name="comments" placeholder='Any instructions?' className='complaintInput' value={comments} onChange={(e) => setComments(e.target.value)} ></textarea>
+                    <button type="submit" className='complaintButton'>Submit Request</button> 
                 </form>
               </div> 
             : <></> 
@@ -26,4 +56,4 @@ function Roomcleaning(props) {
     )
 }
 
-export default Roomcleaning
+export default Roomcleaning;
