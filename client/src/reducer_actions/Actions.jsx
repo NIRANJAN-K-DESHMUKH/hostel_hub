@@ -9,7 +9,7 @@ const setShowComponent = (inputData) => {
 };
 
 const LoginStart = () => ({
-    type: "LOGIN_START",
+    type: "LOGIN_START"
 });
   
 const LoginSuccess = (user) => ({
@@ -18,7 +18,11 @@ const LoginSuccess = (user) => ({
 });
   
 const LoginFailure = () => ({
-    type: "LOGIN_FAILURE",
+    type: "LOGIN_FAILURE"
 });
 
-export {setShowComponent, LoginStart, LoginSuccess, LoginFailure};
+const LogOut = () => ({
+    type: "LOGOUT"
+});
+
+export {setShowComponent, LoginStart, LoginSuccess, LoginFailure, LogOut};

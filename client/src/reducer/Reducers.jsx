@@ -3,7 +3,9 @@ const initialData = {
     showComponents : [
         {id: "dashboard", show: true},
         {id: "cleaning", show: false},
-        {id: "complaint", show: false}
+        {id: "complaint", show: false},
+        {id: "profile", show: false},
+
     ],
     user:JSON.parse(localStorage.getItem("user")) || null,
     isFetching: false,
@@ -48,6 +50,13 @@ const Reducers = (state=initialData, action) => {
                 user: null,
                 isFetching: false,
                 error: true,
+            }
+        case "LOGOUT":
+            return {
+                ...state,
+                user: null,
+                isFetching: false,
+                error: false,
             }
         default:
             return state;
