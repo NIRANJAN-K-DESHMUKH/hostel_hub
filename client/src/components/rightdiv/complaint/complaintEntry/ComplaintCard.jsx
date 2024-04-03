@@ -4,7 +4,7 @@ const ComplaintCard = (props) => {
 
     return (
       <>
-       {props.regNo}
+       {props.complaints}
       </>
     )
 }

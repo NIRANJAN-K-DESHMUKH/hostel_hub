@@ -13,9 +13,9 @@ router.post("/register", async (req, res) => {
               studentRegNo: req.body.studentRegNo,
               room_number: req.body.room_number,
               studentComments: req.body.studentComments,
-              workerId: req.body.workerId,
-              isResolvedStatus: req.body.isResolvedStatus,
-              otp: req.body.otp
+              workerId: "",
+              isResolvedStatus: false,
+              otp: Math.floor(100000 + Math.random() * 900000),
             });
         
             //save complaint and respond
@@ -41,6 +41,21 @@ router.get("/", async (req, res) => {
     } else {
         return res.status(403).json("You are not Student!");
     }
+});
+
+//get all complaints
+router.post("/all/:studentRegNo", async (req, res) => {
+  if(req.body.isStudent) {
+    try {
+      const currentStudentComplaints = await Complaint.find({studentRegNo: req.params.studentRegNo});  
+
+      return res.status(200).json(currentStudentComplaints);
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+    return res.status(403).json("You are not Student!");
+  }
 });
 
 // update complaint
