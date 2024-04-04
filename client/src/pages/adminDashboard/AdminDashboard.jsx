@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import Topbar from '../../components/topbar/Topbar.jsx';
+import Topbar from '../../adminComponents/topbar/Topbar.jsx';
 import "./adminDashboard.css";
-import Navbar from '../../components/navbar/Navbar.jsx';
-import RightDivision from '../../components/rightdiv/RightDivision.jsx';
+import Navbar from '../../adminComponents/navbar/Navbar.jsx';
+import RightDivision from '../../adminComponents/rightdiv/RightDivision.jsx';
 
 const AdminDashboard = () => {
 
@@ -13,7 +12,6 @@ const AdminDashboard = () => {
                 <Navbar />
                 <RightDivision />
             </div>
-            admin dash
         </div>
 
 
