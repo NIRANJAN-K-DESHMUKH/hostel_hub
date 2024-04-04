@@ -7,6 +7,14 @@ const initialData = {
         {id: "profile", show: false},
 
     ],
+    showComponentsAdmin : [
+        {id: "dashboard", show: true},
+        {id: "cleaning", show: false},
+        {id: "complaint", show: false},
+        {id: "profile", show: false},
+        {id: "worker", show: false},
+
+    ],
     user:JSON.parse(localStorage.getItem("user")) || null,
     isFetching: false,
     error: false,
@@ -22,6 +30,22 @@ const Reducers = (state=initialData, action) => {
             return {
                 ...state,
                 showComponents: state.showComponents.map(component => {
+                    if(component.id !== action.payload.id){
+                        return {
+                            ...component,
+                            show: false
+                        }
+                    }
+                    return {
+                        ...component,
+                        show: true
+                    }
+                })
+            }
+        case "ADMIN_SET_COMPONENT":
+            return {
+                ...state,
+                showComponentsAdmin: state.showComponentsAdmin.map(component => {
                     if(component.id !== action.payload.id){
                         return {
                             ...component,

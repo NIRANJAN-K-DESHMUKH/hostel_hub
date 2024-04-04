@@ -1,7 +1,15 @@
-
 const setShowComponent = (inputData) => {
     return {
         type: "SET_COMPONENT",
+        payload: {
+            id: inputData
+        }
+    }
+};
+
+const setShowComponentAdmin = (inputData) => {
+    return {
+        type: "ADMIN_SET_COMPONENT",
         payload: {
             id: inputData
         }
@@ -42,4 +50,4 @@ const LogOutAdmin = () => ({
     type: "ADMIN_LOGOUT"
 });
 
-export {setShowComponent, LoginStart, LoginSuccess, LoginFailure, LogOut , LoginStartAdmin, LoginSuccessAdmin, LoginFailureAdmin, LogOutAdmin};
+export {setShowComponent, setShowComponentAdmin, LoginStart, LoginSuccess, LoginFailure, LogOut , LoginStartAdmin, LoginSuccessAdmin, LoginFailureAdmin, LogOutAdmin};
