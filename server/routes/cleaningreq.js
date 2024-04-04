@@ -65,6 +65,17 @@ router.post("/all/:studentRegNo", async (req, res) => {
   }
 });
 
+//get all cleaningreqs for admin
+router.get("/admin", async (req, res) => {
+    try {
+      const allAdminCleaningReqs = await CleaningReq.find({});  
+
+      return res.status(200).json(allAdminCleaningReqs);
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+});
+
 // update cleaningreq
 router.put("/:id", async (req, res) => {
     if(req.body.isStudent) {
