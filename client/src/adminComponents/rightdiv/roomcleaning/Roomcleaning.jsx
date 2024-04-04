@@ -5,7 +5,8 @@ import { useSelector } from 'react-redux';
 import CleaningCard from "../roomcleaning/cleaningEntry/CleaningCard";
 
 
-function Roomcleaning(props) {
+const Roomcleaning = (props) => {
+  
     const toShow = props.show;
 
     const [cleaningReqs, setCleaningReqs] = useState([]);
