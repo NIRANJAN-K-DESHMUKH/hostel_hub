@@ -6,7 +6,6 @@ import CleaningCard from "../roomcleaning/cleaningEntry/CleaningCard";
 
 
 const Roomcleaning = (props) => {
-  
     const toShow = props.show;
 
     const [cleaningReqs, setCleaningReqs] = useState([]);
