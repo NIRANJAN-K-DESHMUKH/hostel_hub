@@ -58,6 +58,17 @@ router.post("/all/:studentRegNo", async (req, res) => {
   }
 });
 
+//get all complaints for admin
+router.get("/admin", async (req, res) => {
+  try {
+    const allAdminComplaints = await Complaint.find({});  
+
+    return res.status(200).json(allAdminComplaints);
+  } catch (err) {
+    return res.status(500).json(err);
+  }
+});
+
 // update complaint
 router.put("/:id", async (req, res) => {
     if(req.body.isStudent) {

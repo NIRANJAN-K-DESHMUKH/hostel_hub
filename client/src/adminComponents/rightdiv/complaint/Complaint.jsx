@@ -1,58 +1,61 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './complaint.css';
 import axios from "axios";
 import { useSelector } from 'react-redux';
+import ComplaintCard from "../complaint/complaintEntry/ComplaintCard";
 
 
-function Complaint(props) {
+const Complaint = (props) => {
 
     const toShow = props.show;
-    // const [comments, setComments] = useState("");
 
-    // const student = useSelector((state) => {
-    //   return state.Reducers.user;
-    // });
+    const [complaints, setComplaints] = useState([]);
+
+    const admin = useSelector((state) => {
+      return state.Reducers.admin;
+    });
+
+    const showComponents = useSelector((state) => {
+      return state.Reducers.showComponentsAdmin;
+    });
+
+    useEffect(() => {
+      const fetchComplaints = async () => {
+        if(admin) {
+          try {
+            const res = await axios.get("/api/complaint/admin");
   
-    // const handleSubmit = async (event) => {
-    //   event.preventDefault();
-    //   if(student){
-    //     try {
-    //       const res = await axios.post("/api/complaint/register", 
-    //         { studentRegNo: student.studentRegNo,
-    //           room_number: student.room_number,
-    //           studentComments: comments,
-    //           isStudent: true
-    //         }
-    //       );
-    //       setComments("");
-    //     } catch (error) {
-    //       console.log("Error in posting complaint");
-    //     }
-    //   } else {
-    //     console.log("Student not signed in!");
-    //   }
-      
-    // }
+            // setComplaints(
+            //   res.data.sort((p1, p2) => {
+            //     return new Date(p2.createdAt) - new Date(p1.createdAt);
+            //   })
+            // );
+            setComplaints(
+              res.data
+            );
+            // console.log(complaint);
+          } catch (error) {
+            console.log(error)
+          }
+        } else {
+          console.log("Admin not signed in!");
+        }
+        
+      };
+
+      fetchComplaints();
+  }, [showComponents]);
+  
 
     return (
       <>
-        { 
-          toShow 
-            ? <>comp</>
-          // <div className='complaintwrapper'>
-          //       <h1 className='title'>Complaint</h1>
-          //       <form className='complaintForm' onSubmit={handleSubmit}>
-          //           <p name="studName" className='studentdetails'>Name: {student.studentName}</p>
-          //           {/* <p name="studName" className='studentdetails'>Reg. No.: {student.studentRegNo}</p> */}
-          //           <p name="studRoomNo" className='studentdetails'>Hostel Block - Room No.: {student.hostelBlockName}-{student.room_number}</p>
-          //           {/* <p name="studRoomNo" className='studentdetails'>Floor No.: {student.hostelFloorNo}</p> */}
-          //           {/* <p name="studRoomNo" className='studentdetails'>Room Number: {student.room_number}</p> */}
-          //           {/* <p name="studPhoneNo" className='studentdetails'>Phone Number: {student.studentPhone_no}</p> */}
-          //           {/* <p name="studEmailId" className='studentdetails'>Email: {student.studentEmail}</p> */}
-          //           <textarea name="comments" placeholder='Please explain your Complaint.' className='complaintInput' value={comments} onChange={(e) => setComments(e.target.value)} required></textarea>
-          //           <button type="submit" className='complaintButton'>Submit Request</button>
-          //       </form>
-          //     </div> 
+        { toShow 
+            ? <div className='dashboardwrapper'>
+                 <h1 className='title'>Complaints:</h1>
+                 <div>
+                      <ComplaintCard complaints={JSON.stringify(complaints)} />
+                 </div>
+             </div> 
             : <></> 
         }
       </>
