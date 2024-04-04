@@ -43,6 +43,16 @@ router.get("/", async (req, res) => {
     }
 });
 
+// get all workers
+router.get("/admin", async (req, res) => {
+      try {
+      const workers = await Worker.find({});
+      res.status(200).json(workers);
+      } catch (err) {
+      return res.status(500).json(err);
+      }
+});
+
 // update worker
 router.put("/:id", async (req, res) => {
     if(req.body.isAdmin) {
