@@ -5,9 +5,9 @@ const Profile = (props) => {
 
     const toShow = props.show;
     
-    // const student = useSelector((state) => {
-    //     return state.Reducers.user;
-    //   });
+    const admin = useSelector((state) => {
+        return state.Reducers.admin;
+      });
 
     return (
         <>
@@ -15,13 +15,10 @@ const Profile = (props) => {
             ? 
             <div>
                 <h1>admin profile page </h1>
-                {/* <p name="studName" className='studentdetails'>Name: {student.studentName}</p>
-                <p name="studName" className='studentdetails'>Reg. No.: {student.studentRegNo}</p>
-                <p name="studRoomNo" className='studentdetails'>Hostel Block: {student.hostelBlockName}</p>
-                <p name="studRoomNo" className='studentdetails'>Floor No.: {student.hostelFloorNo}</p>
-                <p name="studRoomNo" className='studentdetails'>Room Number: {student.room_number}</p>
-                <p name="studPhoneNo" className='studentdetails'>Phone Number: {student.studentPhone_no}</p>
-                <p name="studEmailId" className='studentdetails'>Email: {student.studentEmail}</p>  */}
+                <p name="studName" className='admindetails'>Name: {admin.adminName}</p>
+                <p name="studRoomNo" className='admindetails'>Hostel Block: {admin.hostelBlockName}</p>
+                <p name="studPhoneNo" className='admindetails'>Phone Number: {admin.adminPhone_no}</p>
+                <p name="studEmailId" className='admindetails'>Email: {admin.adminEmail}</p> 
             </div>
             : <></>
         }
