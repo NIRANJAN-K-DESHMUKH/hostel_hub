@@ -3,11 +3,13 @@ import axios from "axios";
 import CleaningCard from "../roomcleaning/cleaningEntry/CleaningCard";
 import ComplaintCard from "../complaint/complaintEntry/ComplaintCard";
 import { useSelector } from "react-redux";
+import "./dashboard.css";
 
 const Dashboard = (props) => {
     const toShow = props.show;
     const [cleaningReqs, setCleaningReqs] = useState([]);
     const [complaints, setComplaints] = useState([]);
+
     const student = useSelector((state) => {
       return state.Reducers.user;
     });
@@ -20,7 +22,7 @@ const Dashboard = (props) => {
         if(student) {
           try {
             const res = await axios.post("/api/cleaningreq/all/" + student.studentRegNo, {isStudent: true});
-            // console.log("cleaningReqs");
+            // console.log(res.data);
   
             // setCleaningReqs(
             //   res.data.sort((p1, p2) => {
@@ -46,7 +48,7 @@ const Dashboard = (props) => {
               // console.log(res.data);
 
           setComplaints(
-            res.data
+            res.data.reverse()
           );
           // console.log(cleaningReqs);
         } catch (error) {
@@ -65,10 +67,43 @@ const Dashboard = (props) => {
             ? <div className='dashboardwrapper'>
                  <h1 className='title'>Dashboard</h1>
                  <div>
-                      <CleaningCard cleaningreqs={JSON.stringify(cleaningReqs)} />
+                  <h2>Cleaning Reqs:</h2>
+                  <table>
+                    <tr>
+                      <td>Student Reg No:</td>
+                      <td>Room Number:</td>
+                      <td>Student Comments:</td>
+                      <td>isCompletedStatus:</td>
+                      <td>updatedAt:</td>
+                    </tr>
+                      <tr>
+                      {cleaningReqs.map((c) => (
+                        c.map((cc) => (
+                          <CleaningCard key={cc._id} cleaningreq={cc} />
+                        ))
+                      ))}
+                      </tr>
+                  </table>
+                 
+                  
                  </div>
                  <div>
-                      <ComplaintCard complaints={JSON.stringify(complaints)} />
+                 <h2>Complaints:</h2>
+                 <table>
+                    <tr>
+                      <td>Student Reg No:</td>
+                      <td>Room Number:</td>
+                      <td>Student Comments:</td>
+                      <td>isResolvedStatus:</td>
+                      <td>updatedAt:</td>
+                    </tr>
+                      <tr>
+                      {complaints.map((cc) => (
+                          <ComplaintCard key={cc._id} complaint={cc} />
+                        ))}
+                      </tr>
+                  </table>
+                 
                  </div>
              </div> 
             : <></> }
