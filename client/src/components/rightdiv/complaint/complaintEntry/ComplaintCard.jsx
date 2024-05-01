@@ -6,17 +6,17 @@ const ComplaintCard = (props) => {
     return (
       <>
        { 
-       <div>
+       <div className="tableHead">
         
-          <td>{complaint.studentRegNo}</td>
+          <span className="headings">{complaint.studentRegNo}</span>
       
-          <td>{complaint.room_number}</td>
+          <span className="headings">{complaint.room_number}</span>
     
-          <td>{complaint.studentComments}</td>
+          <span className="studentComments">{complaint.studentComments ? complaint.studentComments : "--" }</span>
       
-          <td>{complaint.isResolvedStatus ? "true" : "false"}</td>
+          <span className="headings">{complaint.isResolvedStatus ? "true" : "false"}</span>
 
-          <td>{complaint.updatedAt}</td>
+          <span className="headings">{complaint.updatedAt}</span>
       </div>
       } 
       </>

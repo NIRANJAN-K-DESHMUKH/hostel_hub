@@ -15,3 +15,15 @@ td {
 .dashboardwrapper {
     color: white;
 }
+
+.tableHead {
+    display:  flex; 
+}
+
+.tableHead .headings {
+    flex: 1;
+}
+
+.studentComments {
+    flex: 2;
+}

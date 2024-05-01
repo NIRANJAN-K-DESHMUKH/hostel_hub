@@ -9,8 +9,8 @@ function Complaint(props) {
     const toShow = props.show;
     const [comments, setComments] = useState("");
     const [spokenContent, setSpokenContent] = useState("");
-    const [contentText, setContentText] = useState(" Click here to speak");
-    // const buttonElement = useRef();
+    const [contentText, setContentText] = useState(" Recognised command appears here.");
+    const buttonElement = document.getElementById("complaintButtonId");
 
     function speak(text){
       const text_speak = new SpeechSynthesisUtterance(text);
@@ -28,22 +28,22 @@ function Complaint(props) {
 
   const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 
-const recognition =  new SpeechRecognition();
+  const recognition =  new SpeechRecognition();
 
-recognition.onresult = (event)=> {
-    const currentIndex = event.resultIndex;
-    const transcript = event.results[currentIndex][0].transcript;
-    setContentText(transcript);
-    takeCommand(transcript.toLowerCase());
-}
+  recognition.onresult = (event)=> {
+      const currentIndex = event.resultIndex;
+      const transcript = event.results[currentIndex][0].transcript;
+      setContentText(transcript);
+      takeCommand(transcript.toLowerCase());
+  }
 
 const handleVoiceClick = () => {
     wishMe();
-    setContentText("Listening....");
+    setContentText("Listening...");
     recognition.start();
 }
 const handlesetComments = (message) => {
-  setContentText("Setting the Comments");
+  setContentText("Comments are set.");
   setComments(message.slice(16,message.length));
 }
 
@@ -51,18 +51,16 @@ function takeCommand(message){
     if(message.includes('hey') || message.includes('hello')){
         speak("Hello Sir, How May I Help You?");
     }
-    else if(message.includes("open google")){
-        window.open("https://google.com", "_blank");
-        speak("Opening Google...")
-    }
     else if(message.includes("set complaint as")){
-      speak("Setting the Comments");
+      speak("Setting the Complaint Comments");
       setSpokenContent(message);
       handlesetComments(message);
     }
     else if(message.includes("submit complaint")){
-      speak("Complaint submitted");
-      // buttonElement.click();
+      speak("Complaint submitted.");
+      setSpokenContent(message);
+      buttonElement.click();
+      setContentText("Complaint submitted.");
     }
     else {
         speak("Could not Recognise");
@@ -108,10 +106,14 @@ function takeCommand(message){
                     {/* <p name="studPhoneNo" className='studentdetails'>Phone Number: {student.studentPhone_no}</p> */}
                     {/* <p name="studEmailId" className='studentdetails'>Email: {student.studentEmail}</p> */}
                     <textarea name="comments" placeholder='Please explain your Complaint.' className='complaintInput' value={comments} onChange={(e) => setComments(e.target.value)} required></textarea>
-                    <button type="submit" className='complaintButton'>Submit Request</button>
+                    <button type="submit" className='complaintButton' id="complaintButtonId">Submit Complaint</button>
                 </form>
                 <div className="voiceInput">
-                  <button className="talk" onClick={handleVoiceClick}><i className="fas fa-microphone-alt"></i></button>
+                  <button className="talk" onClick={handleVoiceClick}>
+                    <i className="fas fa-microphone-alt">
+                    </i>
+                    <span className="iconText">Click here to speak.</span>
+                  </button>
                   <h1 className="content">{contentText}</h1>
                 </div>
                 <span>Speech Recognition: {spokenContent}</span>

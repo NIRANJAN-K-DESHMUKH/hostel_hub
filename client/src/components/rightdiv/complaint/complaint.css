@@ -60,7 +60,7 @@
     justify-content: center;
     align-items: center;
     width: 40vw;
-    height: 50px;
+    height: 100px;
     border-radius: 20px;
     background: rgb(202 253 255 / 50%);
   }
@@ -69,17 +69,25 @@
     background: transparent;
     outline: none;
     border: none;
-    width: 50px;
+    width: 200px;
     height: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 15px;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    background-color: #604d96;
   }
   
   .voiceInput .talk i {
-    font-size: 20px;
+    font-size: 25px;
+    color: #aed0d0;
+  }
+
+  .iconText {
+    font-size: 15px;
     color: #aed0d0;
   }
   

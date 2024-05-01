@@ -68,43 +68,41 @@ const Dashboard = (props) => {
                  <h1 className='title'>Dashboard</h1>
                  <div>
                   <h2>Cleaning Reqs:</h2>
-                  <table>
-                    <tr>
-                      <td>Student Reg No:</td>
-                      <td>Room Number:</td>
-                      <td>Student Comments:</td>
-                      <td>isCompletedStatus:</td>
-                      <td>updatedAt:</td>
-                    </tr>
-                      <tr>
-                      {cleaningReqs.map((c) => (
+                  <div>
+                    <div className="tableHead">
+                        <span className="headings">Student Reg No</span>
+                        <span className="headings">Room Number</span>
+                        <span className="studentComments">Student Comments</span>
+                        <span className="headings">Completed Status</span>
+                        <span className="headings">Updated At</span>
+                    </div>
+                    <div>
+                    {cleaningReqs.map((c) => (
                         c.map((cc) => (
                           <CleaningCard key={cc._id} cleaningreq={cc} />
                         ))
                       ))}
-                      </tr>
-                  </table>
-                 
-                  
+                    </div>
+                 </div>
+
                  </div>
                  <div>
                  <h2>Complaints:</h2>
-                 <table>
-                    <tr>
-                      <td>Student Reg No:</td>
-                      <td>Room Number:</td>
-                      <td>Student Comments:</td>
-                      <td>isResolvedStatus:</td>
-                      <td>updatedAt:</td>
-                    </tr>
-                      <tr>
-                      {complaints.map((cc) => (
-                          <ComplaintCard key={cc._id} complaint={cc} />
-                        ))}
-                      </tr>
-                  </table>
-                 
+                 <div>
+                    <div className="tableHead">
+                        <span className="headings">Student Reg No</span>
+                        <span className="headings">Room Number</span>
+                        <span className="studentComments">Student Comments</span>
+                        <span className="headings">Resolved Status</span>
+                        <span className="headings">Updated At</span>
+                    </div>
+                    <div>
+                        {complaints.map((cc) => (
+                            <ComplaintCard key={cc._id} complaint={cc} />
+                          ))}
+                    </div>
                  </div>
+                </div>
              </div> 
             : <></> }
       </>
