@@ -6,6 +6,66 @@ import { useSelector } from 'react-redux';
 function Roomcleaning(props) {
     const toShow = props.show;
     const [comments, setComments] = useState("");
+    const [spokenContent, setSpokenContent] = useState("");
+    const [contentText, setContentText] = useState(" Recognised command appears here.");
+    const buttonElement = document.getElementById("complaintButtonId");
+
+
+    function speak(text){
+      const text_speak = new SpeechSynthesisUtterance(text);
+  
+      text_speak.rate = 1;
+      text_speak.volume = 1;
+      text_speak.pitch = 1;
+  
+      window.speechSynthesis.speak(text_speak);
+  }
+  
+  function wishMe(){
+      speak("Listening")
+  }
+
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+  const recognition =  new SpeechRecognition();
+
+  recognition.onresult = (event)=> {
+      const currentIndex = event.resultIndex;
+      const transcript = event.results[currentIndex][0].transcript;
+      setContentText(transcript);
+      takeCommand(transcript.toLowerCase());
+  }
+
+const handleVoiceClick = () => {
+    wishMe();
+    setContentText("Listening...");
+    recognition.start();
+}
+const handlesetComments = (message) => {
+  setContentText("Instructions are set.");
+  setComments(message.slice(19,message.length));
+}
+
+function takeCommand(message){
+    if(message.includes('hey') || message.includes('hello')){
+        speak("Hello Sir, How May I Help You?");
+    }
+    else if(message.includes("set instructions as")){
+      speak("Setting the Cleaning Request Instructions");
+      setSpokenContent(message);
+      handlesetComments(message);
+    }
+    else if(message.includes("submit request")){
+      speak("Cleaning Request submitted.");
+      setSpokenContent(message);
+      buttonElement.click();
+      setContentText("Cleaning Request submitted.");
+    }
+    else {
+        speak("Could not Recognise");
+    }
+}
+
 
     const student = useSelector((state) => {
       return state.Reducers.user;
@@ -47,8 +107,17 @@ function Roomcleaning(props) {
                     <p name="studPhoneNo" className='studentdetails'>Phone Number: {student.studentPhone_no}</p>
                     <p name="studEmailId" className='studentdetails'>Email: {student.studentEmail}</p> */}
                     <textarea name="comments" placeholder='Any instructions?' className='complaintInput' value={comments} onChange={(e) => setComments(e.target.value)} ></textarea>
-                    <button type="submit" className='complaintButton'>Submit Request</button> 
+                    <button type="submit" className='complaintButton' id="complaintButtonId">Submit Request</button> 
                 </form>
+                <div className="voiceInput">
+                  <button className="talk" onClick={handleVoiceClick}>
+                    <i className="fas fa-microphone-alt">
+                    </i>
+                    <span className="iconText">Click here to speak.</span>
+                  </button>
+                  <h1 className="content">{contentText}</h1>
+                </div>
+                <span>Speech Recognition: {spokenContent}</span>
               </div> 
             : <></> 
         }
