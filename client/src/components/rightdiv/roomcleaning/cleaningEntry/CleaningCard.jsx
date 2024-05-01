@@ -5,18 +5,18 @@ const CleaningCard = (props) => {
     return (
       <>
        { 
-       <div>
+       <div className="tableHead">
         
-          <td>{cleaningreq.studentRegNo}</td>
+          <span className="headings">{cleaningreq.studentRegNo}</span>
       
-          <td>{cleaningreq.room_number}</td>
+          <span className="headings">{cleaningreq.room_number}</span>
     
-          <td>{cleaningreq.studentComments}</td>
+          <span className="studentComments">{cleaningreq.studentComments}</span>
       
-          <td>{cleaningreq.isCompletedStatus ? "true" : "false"}</td>
+          <span className="headings">{cleaningreq.isCompletedStatus ? "true" : "false"}</span>
 
-          <td>{cleaningreq.updatedAt}</td>
-      </div>
+          <span className="headings">{cleaningreq.updatedAt}</span>
+        </div>
       } 
       </>
     )
