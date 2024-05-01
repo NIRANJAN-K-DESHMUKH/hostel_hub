@@ -9,6 +9,15 @@ router.post("/register", async (req, res) => {
     if(req.body.isStudent) {
         try {
 
+           //find if already present 
+           const presentComplaints = await CleaningReq.find({room_number: req.body.room_number, isCompletedStatus: false});  
+            
+           if(presentComplaints.length > 0) {
+             // do not allow
+             return res.status(403).json("previous request is already in Queue!");
+
+           } else {
+
             //create new cleaningreq
             const newCleaningReq = new CleaningReq({
               studentRegNo: req.body.studentRegNo,
@@ -21,7 +30,8 @@ router.post("/register", async (req, res) => {
            
             //save cleaningreq and respond
             const cleaningreq = await newCleaningReq.save();
-             return res.status(200).json(cleaningreq);
+            return res.status(200).json(cleaningreq);
+          }
           } catch (err) {
             return res.status(500).json(err);
           }    
