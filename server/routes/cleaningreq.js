@@ -26,7 +26,7 @@ router.post("/register", async (req, res) => {
             return res.status(500).json(err);
           }    
     } else {
-        return res.status(403).json("You are not Student!");
+        return res.status(403).json("Student not logged in.");
     }
 }); 
     
@@ -40,7 +40,7 @@ router.get("/", async (req, res) => {
         return res.status(500).json(err);
         }
     } else {
-        return res.status(403).json("You are not Student!");
+        return res.status(403).json("Student not logged in.");
     }
 });
 
@@ -61,7 +61,7 @@ router.post("/all/:studentRegNo", async (req, res) => {
       return res.status(500).json(err);
     }
   } else {
-    return res.status(403).json("You are not Student!");
+    return res.status(403).json("Student not logged in.");
   }
 });
 
@@ -88,7 +88,7 @@ router.put("/:id", async (req, res) => {
         return res.status(500).json(err);
       }
     } else {
-        return res.status(403).json("You are not Student!");
+        return res.status(403).json("Student not logged in.");
     }
 });
 
@@ -103,7 +103,7 @@ router.delete("/:id", async (req, res) => {
         return res.status(500).json(err);
       }
     } else {
-      return res.status(403).json("You are not Student!");
+      return res.status(403).json("Student not logged in.");
     }
 });
 

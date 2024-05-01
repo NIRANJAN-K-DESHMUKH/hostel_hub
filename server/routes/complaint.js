@@ -7,25 +7,36 @@ const router = express.Router();
 router.post("/register", async (req, res) => {
     if(req.body.isStudent) {
         try {
+            //find if already present 
+            const presentComplaints = await Complaint.find({studentRegNo: req.body.studentRegNo, isResolvedStatus: false});  
+            presentComplaints.length > 0 ? console.log(presentComplaints.length) : console.log("not present");
+            
+            if(presentComplaints.length > 0) {
+              // do not allow
+              alert("Your previous complaint is already in Queue, you can put another once it is resolved.");
+              return res.status(403).json("previous complaint is already in Queue!");
 
-            //create new complaint
-            const newComplaint = new Complaint({
-              studentRegNo: req.body.studentRegNo,
-              room_number: req.body.room_number,
-              studentComments: req.body.studentComments,
-              workerId: "",
-              isResolvedStatus: false,
-              otp: Math.floor(100000 + Math.random() * 900000),
-            });
-        
-            //save complaint and respond
-            const complaint = await newComplaint.save();
-             res.status(200).json(complaint);
+            } else {
+              //create new complaint
+              const newComplaint = new Complaint({
+                studentRegNo: req.body.studentRegNo,
+                room_number: req.body.room_number,
+                studentComments: req.body.studentComments,
+                workerId: "",
+                isResolvedStatus: false,
+                otp: Math.floor(100000 + Math.random() * 900000)
+              });
+          
+              //save complaint and respond
+              const complaint = await newComplaint.save();
+              res.status(200).json(complaint);
+            }
+            
           } catch (err) {
              res.status(500).json(err);
           }    
     } else {
-        return res.status(403).json("You are not Student!");
+        return res.status(403).json("Student not logged in.");
     }
 }); 
     
@@ -39,7 +50,7 @@ router.get("/", async (req, res) => {
         return res.status(500).json(err);
         }
     } else {
-        return res.status(403).json("You are not Student!");
+        return res.status(403).json("Student not logged in.");
     }
 });
 
@@ -54,7 +65,7 @@ router.post("/all/:studentRegNo", async (req, res) => {
       return res.status(500).json(err);
     }
   } else {
-    return res.status(403).json("You are not Student!");
+    return res.status(403).json("Student not logged in.");
   }
 });
 
@@ -81,7 +92,7 @@ router.put("/:id", async (req, res) => {
         return res.status(500).json(err);
       }
     } else {
-        return res.status(403).json("You are not Student!");
+        return res.status(403).json("Student not logged in.");
     }
 });
 
@@ -96,7 +107,7 @@ router.delete("/:id", async (req, res) => {
         return res.status(500).json(err);
       }
     } else {
-      return res.status(403).json("You are not Student!");
+      return res.status(403).json("Student not logged in.");
     }
 });
 

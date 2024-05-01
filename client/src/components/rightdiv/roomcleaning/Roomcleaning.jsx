@@ -43,7 +43,7 @@ const handleVoiceClick = () => {
 }
 const handlesetComments = (message) => {
   setContentText("Instructions are set.");
-  setComments(message.slice(19,message.length));
+  setComments(message.slice(20, message.length));
 }
 
 function takeCommand(message){

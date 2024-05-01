@@ -43,7 +43,7 @@ const handleVoiceClick = () => {
 }
 const handlesetComments = (message) => {
   setContentText("Comments are set.");
-  setComments(message.slice(16,message.length));
+  setComments(message.slice(17,message.length));
 }
 
 function takeCommand(message){
@@ -75,7 +75,8 @@ function takeCommand(message){
       if(student){
         try {
           const res = await axios.post("/api/complaint/register", 
-            { studentRegNo: student.studentRegNo,
+            { 
+              studentRegNo: student.studentRegNo,
               room_number: student.room_number,
               studentComments: comments,
               isStudent: true
@@ -83,7 +84,7 @@ function takeCommand(message){
           );
           setComments("");
         } catch (error) {
-          console.log("Error in posting complaint");
+          alert("Could not register your complaint! 🙁\n\nYour last complaint is already in Queue, you can only put a new one when the previous one is resolved.\nOr\nYou are not connected to internet.");
         }
       } else {
         console.log("Student not signed in!");
