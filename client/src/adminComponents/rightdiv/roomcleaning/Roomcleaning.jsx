@@ -57,7 +57,7 @@ const Roomcleaning = (props) => {
                  <span className="headings">Room Number</span>
                  <span className="studentComments">Student Comments</span>
                  <span className="headings">Completed Status</span>
-                 <span className="headings">Updated At</span>
+                 <span className="headings">Date (m/d/yyyy)</span>
              </div>
              <div>
                  {cleaningReqs.map((cc) => (
@@ -66,7 +66,7 @@ const Roomcleaning = (props) => {
                      <span className="headings">{cc.room_number}</span>
                      <span className="studentComments">{cc.studentComments ? cc.studentComments : "-" }</span>
                      <span className="headings">{cc.isCompletedStatus ? "true" : "false"}</span>
-                     <span className="headings">{cc.updatedAt}</span>
+                     <span className="headings">{new Date(cc.createdAt).toLocaleDateString()} {new Date(cc.createdAt).toLocaleTimeString()}</span>
                    </div>
                  ))}
              </div>

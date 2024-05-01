@@ -13,7 +13,10 @@ const Worker = (props) => {
     const [Wname, setName] = useState("");
     const [Wemail, setEmail] = useState("");
     const [Wphone, setPhone] = useState("");
-    const [Wblock, setBlock] = useState("");
+
+    const [newW, setNewW] = useState(false);
+
+
 
 
     const admin = useSelector((state) => {
@@ -29,17 +32,11 @@ const Worker = (props) => {
         if(admin) {
           try {
             const res = await axios.get("/api/worker/admin");
-  
-            // setWorkers(
-            //   res.data.sort((p1, p2) => {
-            //     return new Date(p2.createdAt) - new Date(p1.createdAt);
-            //   })
-            // );
             setWorkers(
               res.data
             );
           } catch (error) {
-            console.log(error)
+            console.log(error);
           }
         } else {
           console.log("Admin not signed in!");
@@ -48,7 +45,7 @@ const Worker = (props) => {
       };
 
       fetchWorkers();
-  }, [showComponents]);
+  }, [newW, showComponents]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -59,7 +56,7 @@ const Worker = (props) => {
             workerName: Wname,
             workerEmail: Wemail,
             workerPhone_no: Wphone,
-            hostelBlockName: Wblock,
+            hostelBlockName: "F",
             isBusyStatus: 0,
             isAdmin: true
           }
@@ -69,7 +66,9 @@ const Worker = (props) => {
         setName("");
         setEmail("");
         setPhone("");
-        setBlock("");
+
+        newW ? setNewW(false) : setNewW(true);
+
       } catch (error) {
         console.log("Error in registering worker");
       }
@@ -88,7 +87,6 @@ const Worker = (props) => {
                     <input type="text" placeholder='Name' className="inputField" value={Wname} onChange={(e) => setName(e.target.value)} required/> <br/>
                     <input type="email" placeholder='Email' className="inputField" value={Wemail} onChange={(e) => setEmail(e.target.value)} required/> <br/>
                     <input type="text" placeholder='Phone No' className="inputField" value={Wphone} onChange={(e) => setPhone(e.target.value)} required/> <br/>
-                    <input type="text" placeholder='Hostel Block' className="inputField" value={Wblock} onChange={(e) => setBlock(e.target.value)} required/> <br/>
 
                     <button type="submit" className='complaintButton' id="complaintButtonId">Submit</button>
                 </form>
@@ -98,7 +96,7 @@ const Worker = (props) => {
                     <span className="headings">Worker Id</span>
                     <span className="headings">Worker Name</span>
                     <span className="headings">Busy Status</span>
-                    <span className="headings">Updated At</span>
+                    <span className="headings">Updated At (m/d/yyyy)</span>
                   </div>
                  <div>
                       {workers.map((w) => (
@@ -106,7 +104,7 @@ const Worker = (props) => {
                           <span className="headings">{w.workerId}</span>
                           <span className="headings">{w.workerName}</span>
                           <span className="headings">{w.isBusyStatus ? "Busy" : "Free"}</span>
-                          <span className="headings">{w.updatedAt}</span>
+                          <span className="headings">{new Date(w.updatedAt).toLocaleDateString()} {new Date(w.updatedAt).toLocaleTimeString()}</span>
                         </div>
                       ))}
                   </div>
