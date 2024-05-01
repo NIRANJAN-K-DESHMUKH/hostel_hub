@@ -84,7 +84,7 @@ function takeCommand(message){
           );
           setComments("");
         } catch (error) {
-          console.log("Error in posting cleaning req");
+          alert("Could not register your cleaning request! 🙁\n\nYour last request is already in Queue, you can only put a new one when the previous one is completed.\nOr\nYou are not connected to internet.");
         }
       } else {
         console.log("Student not signed in!");

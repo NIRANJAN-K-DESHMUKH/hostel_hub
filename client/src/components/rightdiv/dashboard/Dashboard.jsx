@@ -30,7 +30,7 @@ const Dashboard = (props) => {
             //   })
             // );
             setCleaningReqs(
-              res.data
+              res.data.reverse()
             );
             // console.log(cleaningReqs);
           } catch (error) {
@@ -74,7 +74,7 @@ const Dashboard = (props) => {
                         <span className="headings">Room Number</span>
                         <span className="studentComments">Student Comments</span>
                         <span className="headings">Completed Status</span>
-                        <span className="headings">Updated At</span>
+                        <span className="headings">Date (m/d/yyyy)</span>
                     </div>
                     <div>
                     {cleaningReqs.map((c) => (
@@ -94,7 +94,7 @@ const Dashboard = (props) => {
                         <span className="headings">Room Number</span>
                         <span className="studentComments">Student Comments</span>
                         <span className="headings">Resolved Status</span>
-                        <span className="headings">Updated At</span>
+                        <span className="headings">Date (m/d/yyyy)</span>
                     </div>
                     <div>
                         {complaints.map((cc) => (

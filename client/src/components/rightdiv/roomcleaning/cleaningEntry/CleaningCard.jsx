@@ -15,7 +15,8 @@ const CleaningCard = (props) => {
       
           <span className="headings">{cleaningreq.isCompletedStatus ? "true" : "false"}</span>
 
-          <span className="headings">{cleaningreq.updatedAt}</span>
+          {/* <span className="headings">{cleaningreq.updatedAt.slice(0, 10)+" "+cleaningreq.updatedAt.slice(11, 13)}</span> */}
+          <span className="headings">{new Date(cleaningreq.createdAt).toLocaleDateString()} {new Date(cleaningreq.createdAt).toLocaleTimeString()}</span>
         </div>
       } 
       </>

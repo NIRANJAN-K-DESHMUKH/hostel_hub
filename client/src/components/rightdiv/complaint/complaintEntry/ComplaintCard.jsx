@@ -16,7 +16,7 @@ const ComplaintCard = (props) => {
       
           <span className="headings">{complaint.isResolvedStatus ? "true" : "false"}</span>
 
-          <span className="headings">{complaint.updatedAt}</span>
+          <span className="headings">{new Date(complaint.createdAt).toLocaleDateString()} {new Date(complaint.createdAt).toLocaleTimeString()}</span>
       </div>
       } 
       </>
