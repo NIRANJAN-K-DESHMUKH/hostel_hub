@@ -11,7 +11,7 @@ const CleaningCard = (props) => {
       
           <span className="headings">{cleaningreq.room_number}</span>
     
-          <span className="studentComments">{cleaningreq.studentComments}</span>
+          <span className="studentComments">{cleaningreq.studentComments ? cleaningreq.studentComments : "-"}</span>
       
           <span className="headings">{cleaningreq.isCompletedStatus ? "true" : "false"}</span>
 

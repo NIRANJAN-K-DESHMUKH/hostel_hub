@@ -3,7 +3,6 @@ import './complaint.css';
 import axios from "axios";
 import { useSelector } from 'react-redux';
 
-
 function Complaint(props) {
 
     const toShow = props.show;

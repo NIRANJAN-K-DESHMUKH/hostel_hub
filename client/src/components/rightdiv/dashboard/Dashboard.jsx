@@ -69,7 +69,7 @@ const Dashboard = (props) => {
                  <div>
                   <h2>Cleaning Reqs:</h2>
                   <div>
-                    <div className="tableHead">
+                    <div className="tableHead1">
                         <span className="headings">Student Reg No</span>
                         <span className="headings">Room Number</span>
                         <span className="studentComments">Student Comments</span>
@@ -89,7 +89,7 @@ const Dashboard = (props) => {
                  <div>
                  <h2>Complaints:</h2>
                  <div>
-                    <div className="tableHead">
+                    <div className="tableHead1">
                         <span className="headings">Student Reg No</span>
                         <span className="headings">Room Number</span>
                         <span className="studentComments">Student Comments</span>
