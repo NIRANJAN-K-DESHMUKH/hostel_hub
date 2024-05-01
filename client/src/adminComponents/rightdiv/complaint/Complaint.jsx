@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import './complaint.css';
 import axios from "axios";
 import { useSelector } from 'react-redux';
-import ComplaintCard from "../complaint/complaintEntry/ComplaintCard";
-
 
 const Complaint = (props) => {
 
@@ -50,12 +48,28 @@ const Complaint = (props) => {
     return (
       <>
         { toShow 
-            ? <div className='dashboardwrapper'>
-                 <h1 className='title'>Complaints:</h1>
-                 <div>
-                      <ComplaintCard complaints={JSON.stringify(complaints)} />
-                 </div>
-             </div> 
+            ? 
+              <>
+                  <h1 className='title'>Complaints</h1>
+                  <div className="tableHead1">
+                      <span className="headings">Student Reg No</span>
+                      <span className="headings">Room Number</span>
+                      <span className="studentComments">Student Comments</span>
+                      <span className="headings">Resolved Status</span>
+                      <span className="headings">Updated At</span>
+                  </div>
+                  <div>
+                      {complaints.map((cc) => (
+                        <div className="tableHead" key={cc._id}>
+                          <span className="headings">{cc.studentRegNo}</span>
+                          <span className="headings">{cc.room_number}</span>
+                          <span className="studentComments">{cc.studentComments ? cc.studentComments : "--" }</span>
+                          <span className="headings">{cc.isResolvedStatus ? "true" : "false"}</span>
+                          <span className="headings">{cc.updatedAt}</span>
+                        </div>
+                      ))}
+                  </div>
+              </>
             : <></> 
         }
       </>
