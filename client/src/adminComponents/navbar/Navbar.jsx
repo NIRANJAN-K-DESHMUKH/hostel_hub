@@ -4,6 +4,7 @@ import CleaningServicesIcon from '@mui/icons-material/CleaningServices';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import LogoutIcon from '@mui/icons-material/Logout';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 // import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { LogOutAdmin, setShowComponentAdmin } from '../../reducer_actions/Actions.jsx';
@@ -47,7 +48,7 @@ const Navbar = () => {
                     <span className='listItemName'>Complaint</span>
                 </li>
                 <li className='listItem_leftdiv' onClick={handleClickWorker}>
-                    <RateReviewIcon className='logoimage' />
+                    <ManageAccountsIcon className='logoimage' />
                     <span className='listItemName'>Workers</span>
                 </li>
                 {/* <Link to="/login" style={{ textDecoration: "none" }}> */}

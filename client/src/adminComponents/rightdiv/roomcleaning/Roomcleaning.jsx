@@ -49,12 +49,28 @@ const Roomcleaning = (props) => {
     return (
       <>
         { toShow 
-            ? <div className='dashboardwrapper'>
-                 <h1 className='title'>Room Cleaning Requests:</h1>
-                 <div>
-                      <CleaningCard cleaningreqs={JSON.stringify(cleaningReqs)} />
-                 </div>
-             </div> 
+            ? 
+             <>
+             <h1 className='title'>Room Cleaning Requests</h1>
+             <div className="tableHead1">
+                 <span className="headings">Student Reg No</span>
+                 <span className="headings">Room Number</span>
+                 <span className="studentComments">Student Comments</span>
+                 <span className="headings">Completed Status</span>
+                 <span className="headings">Updated At</span>
+             </div>
+             <div>
+                 {cleaningReqs.map((cc) => (
+                   <div className="tableHead" key={cc._id}>
+                     <span className="headings">{cc.studentRegNo}</span>
+                     <span className="headings">{cc.room_number}</span>
+                     <span className="studentComments">{cc.studentComments ? cc.studentComments : "-" }</span>
+                     <span className="headings">{cc.isCompletedStatus ? "true" : "false"}</span>
+                     <span className="headings">{cc.updatedAt}</span>
+                   </div>
+                 ))}
+             </div>
+         </>
             : <></> 
         }
       </>
