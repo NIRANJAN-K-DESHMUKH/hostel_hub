@@ -35,10 +35,10 @@ const Navbar = () => {
         <div className='leftdivision'>
             <ul>
 
-                <li className='listItem_leftdiv' onClick={handleClickDashboard} >
+                {/* <li className='listItem_leftdiv' onClick={handleClickDashboard} >
                     <DashboardIcon className='logoimage' />
                     <span className='listItemName'>Dashboard</span>
-                </li>
+                </li> */}
                 <li className='listItem_leftdiv' onClick={handleClickRoomCleaning}>
                     <CleaningServicesIcon className='logoimage' />
                     <span className='listItemName'>Room Cleaning</span>
