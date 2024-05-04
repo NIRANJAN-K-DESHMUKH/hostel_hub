@@ -16,9 +16,6 @@ const Worker = (props) => {
 
     const [newW, setNewW] = useState(false);
 
-
-
-
     const admin = useSelector((state) => {
       return state.Reducers.admin;
     });
@@ -76,6 +73,22 @@ const Worker = (props) => {
       console.log("Admin not signed in!");
     }
   }
+
+  const handleDelete = async (delWId) => {
+    console.log(delWId);
+    if(admin){
+      try {
+        const res = await axios.delete("/api/worker/" + delWId);
+
+        newW ? setNewW(false) : setNewW(true);
+
+      } catch (error) {
+        console.log("Error in deleting worker");
+      }
+    } else {
+      console.log("Admin not signed in!");
+    }
+  }
   
     return (
       <>
@@ -88,7 +101,7 @@ const Worker = (props) => {
                     <input type="email" placeholder='Email' className="inputField" value={Wemail} onChange={(e) => setEmail(e.target.value)} required/> <br/>
                     <input type="text" placeholder='Phone No' className="inputField" value={Wphone} onChange={(e) => setPhone(e.target.value)} required/> <br/>
 
-                    <button type="submit" className='complaintButton' id="complaintButtonId">Submit</button>
+                    <button type="submit" className='complaintButton' id="complaintButtonId">Add</button>
                 </form>
 
                 <h1 className='title'>Workers List</h1>
@@ -97,6 +110,7 @@ const Worker = (props) => {
                     <span className="headings">Worker Name</span>
                     <span className="headings">Busy Status</span>
                     <span className="headings">Updated At (m/d/yyyy)</span>
+                    <span className="headings">Delete</span>
                   </div>
                  <div>
                       {workers.map((w) => (
@@ -105,6 +119,7 @@ const Worker = (props) => {
                           <span className="headings">{w.workerName}</span>
                           <span className="headings">{w.isBusyStatus ? "Busy" : "Free"}</span>
                           <span className="headings">{new Date(w.updatedAt).toLocaleDateString()} {new Date(w.updatedAt).toLocaleTimeString()}</span>
+                          <span className="headings" onClick={() => handleDelete(w.workerId)}><button>Delete</button></span>
                         </div>
                       ))}
                   </div>

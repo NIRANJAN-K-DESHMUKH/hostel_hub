@@ -9,10 +9,6 @@
     flex: 1;
 }
 
-.studentComments {
-    flex: 2;
-}
-
 .tableHead {
     display:  flex; 
     font-size: small;

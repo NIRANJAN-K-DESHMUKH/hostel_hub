@@ -72,16 +72,12 @@ router.put("/:id", async (req, res) => {
 
 // delete
 router.delete("/:id", async (req, res) => {
-    if (req.body.isAdmin) {
       try {
         await Worker.findOneAndDelete({workerId: req.params.id});
         res.status(200).json("Worker has been deleted");
       } catch (err) {
         return res.status(500).json(err);
       }
-    } else {
-      return res.status(403).json("You are not Admin!");
-    }
 });
 
 

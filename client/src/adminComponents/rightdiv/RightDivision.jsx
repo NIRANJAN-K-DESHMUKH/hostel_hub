@@ -13,7 +13,7 @@ const RightDivision = () => {
     });
     return (
         <div className='rightdivision'>
-            <Dashboard key={1} show={showComponentsAdmin[0].show}/>
+            {/* <Dashboard key={1} show={showComponentsAdmin[0].show}/> */}
             <Roomcleaning key={2} show={showComponentsAdmin[1].show}/>
             <Complaint key={3} show={showComponentsAdmin[2].show}/>
             <Profile key={4} show={showComponentsAdmin[3].show}/>

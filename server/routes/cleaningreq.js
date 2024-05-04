@@ -17,6 +17,7 @@ router.post("/register", async (req, res) => {
              return res.status(403).json("previous request is already in Queue!");
 
            } else {
+            //assign worker
 
             //create new cleaningreq
             const newCleaningReq = new CleaningReq({
