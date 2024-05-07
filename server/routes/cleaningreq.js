@@ -64,7 +64,7 @@ router.post("/register", async (req, res) => {
               room_number: req.body.room_number,
               studentComments: req.body.studentComments,
               workerId: "W"+assignedWorker,
-              isCompletedStatus: true,
+              isCompletedStatus: false,
               otp: otp,
               cleaningreqId: allReqs.length+1
             });
@@ -73,7 +73,7 @@ router.post("/register", async (req, res) => {
             //save cleaningreq and respond
             const cleaningreq = await newCleaningReq.save();
             const cleanreqId = allReqs.length+1;
-            sendMsg("\n\nFrom HostelHub\n\nRequest Id: "+cleanreqId+"\nRoom No.: " +req.body.room_number+ "\nRoom Cleaning OTP is: "+otp);
+            sendMsg("\n\nFrom HostelHub\n\nRequest Id: "+cleanreqId+"\nRoom No.: " +req.body.room_number+ "\nRoom Cleaning OTP is: "+otp+"\n\nInstructions: "+req.body.studentComments);
             return res.status(200).json(cleaningreq);
           }
           } catch (err) {
@@ -104,6 +104,7 @@ router.post("/all/:studentRegNo", async (req, res) => {
     try {
       const currentStudent = await Student.findOne({studentRegNo: req.params.studentRegNo});  
       const roommates = await Student.find({room_number: currentStudent.room_number});
+      // console.log(roommates);
       const allRoommatesCleaningReqs = await Promise.all (
         roommates.map((student) => {
           return CleaningReq.find({ studentRegNo: student.studentRegNo });
@@ -144,6 +145,22 @@ router.put("/:id", async (req, res) => {
     } else {
         return res.status(403).json("Student not logged in.");
     }
+});
+
+//update using patch
+router.patch("/:id", async (req, res) => {
+  if(req.body.isStudent) {
+    try {
+      const cleaningreq = await CleaningReq.findOneAndUpdate({cleaningreqId: req.params.id}, {
+        $set: {isCompletedStatus: req.body.isCompletedStatus}
+      });
+      return res.status(200).json("cleaningreq has been updated");
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+      return res.status(403).json("Student not logged in.");
+  }
 });
 
 
