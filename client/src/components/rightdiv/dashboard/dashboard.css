@@ -10,6 +10,8 @@ p {
     display:  flex; 
     font-size: medium;
     font-weight: bold;
+    margin-right: 5%;
+
 }
 
 .tableHead1 .headings {
@@ -24,6 +26,8 @@ p {
     display:  flex; 
     font-size: small;
     font-weight: 400;
+    border-top: 0.1px dashed rgb(93, 93, 93);
+    margin-right: 5%;
 }
 
 .tableHead .headings {
@@ -33,4 +37,8 @@ p {
 .mapData{
     display: flex;
     flex-direction: column-reverse;
+}
+
+.title {
+    margin-top: 0;
 }

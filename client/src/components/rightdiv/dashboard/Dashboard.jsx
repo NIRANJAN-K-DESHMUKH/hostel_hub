@@ -22,13 +22,7 @@ const Dashboard = (props) => {
         if(student) {
           try {
             const res = await axios.post("/api/cleaningreq/all/" + student.studentRegNo, {isStudent: true});
-            // console.log(res.data);
-  
-            // setCleaningReqs(
-            //   res.data.sort((p1, p2) => {
-            //     return new Date(p2.createdAt) - new Date(p1.createdAt);
-            //   })
-            // );
+            
             setCleaningReqs(
               res.data
             );
@@ -71,7 +65,7 @@ const Dashboard = (props) => {
                   <div>
                     <div className="tableHead1">
                         <span className="headings">Student Reg No</span>
-                        <span className="headings">Room Number</span>
+                        {/* <span className="headings">Room Number</span> */}
                         <span className="studentComments">Student Comments</span>
                         <span className="headings">Completed Status</span>
                         <span className="headings">Date (m/d/yyyy)</span>
@@ -93,11 +87,10 @@ const Dashboard = (props) => {
                  <div>
                     <div className="tableHead1">
                         <span className="headings">Student Reg No</span>
-                        <span className="headings">Room Number</span>
+                        {/* <span className="headings">Room Number</span> */}
                         <span className="studentComments">Student Comments</span>
                         <span className="headings">Resolved Status</span>
                         <span className="headings">Date (m/d/yyyy)</span>
-                        <span className="headings">Enter OTP</span>
                     </div>
                     <div className="mapData">
                         {complaints.map((cc) => (
