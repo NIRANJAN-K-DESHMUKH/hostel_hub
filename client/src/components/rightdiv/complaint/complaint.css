@@ -55,7 +55,9 @@
 }
 
 .voiceInput {
-    margin-top: 2%;
+    margin-top: 3%;
+    margin-left: 10%;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -70,7 +72,7 @@
     outline: none;
     border: none;
     width: 200px;
-    height: 50px;
+    height: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,6 +81,8 @@
     display: flex;
     flex-direction: column;
     background-color: #604d96;
+    margin-left: 30px;
+    border-radius: 50px;
   }
   
   .voiceInput .talk i {
@@ -94,5 +98,12 @@
   .voiceInput .content {
     color: #aed0d0;
     font-size: 15px;
-    margin-right: 20px;
+    margin-right: 10%;
+    margin-left: 10%;
+  }
+
+  .speechRecog {
+    color: white;
+    margin-right: 10%;
+    margin-left: 10%;  
   }

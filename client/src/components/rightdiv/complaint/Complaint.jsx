@@ -83,8 +83,11 @@ function takeCommand(message){
             }
           );
           setComments("");
+          if(res.status===200){
+            alert("Complaint Submitted Successfully 😊");
+          } 
         } catch (error) {
-          alert("Could not register your complaint! 🙁\n\nYour last complaint is already in Queue, you can only put a new one when the previous one is resolved.\nOr\nYou are not connected to internet.");
+          alert("Could not register your complaint! 🙁\n\nYour last complaints are already in Queue, you can put 3 complaints at maximum.\nOr\nYou are not connected to internet.");
         }
       } else {
         console.log("Student not signed in!");
@@ -116,7 +119,7 @@ function takeCommand(message){
                   </button>
                   <h1 className="content">{contentText}</h1>
                 </div>
-                <span>Speech Recognition: {spokenContent}</span>
+                <span className='speechRecog'>Speech Recognition: {spokenContent}</span>
               </div> 
             : <></> 
         }

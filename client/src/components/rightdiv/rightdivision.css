@@ -8,6 +8,7 @@
     overflow-y: scroll;
     scrollbar-width: none;
     /* padding-right: 5px; */
+    padding-left: 50px;
     scrollbar-color: #18191a #18191a;
 }
 
