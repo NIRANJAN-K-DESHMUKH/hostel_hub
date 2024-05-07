@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 const Complaint = (props) => {
 
     const toShow = props.show;
+    const [newW, setNew] = useState(false);
 
     const [complaints, setComplaints] = useState([]);
 
@@ -16,6 +17,18 @@ const Complaint = (props) => {
     const showComponents = useSelector((state) => {
       return state.Reducers.showComponentsAdmin;
     });
+
+    const handleResolve = async (id) => {
+      console.log(id);
+      // event.preventDefault();
+      await axios.patch("/api/complaint/"+id,
+          {
+            isResolvedStatus: true,
+            isAdmin: true
+          }
+        );
+        newW ? setNew(false) : setNew(true);
+    }
 
     useEffect(() => {
       const fetchComplaints = async () => {
@@ -42,7 +55,7 @@ const Complaint = (props) => {
       };
 
       fetchComplaints();
-  }, [showComponents]);
+  }, [newW, showComponents]);
   
 
     return (
@@ -57,8 +70,9 @@ const Complaint = (props) => {
                       <span className="studentComments">Student Comments</span>
                       <span className="headings">Resolved Status</span>
                       <span className="headings">Date (m/d/yyyy)</span>
+                      <span className="headings">Update Status</span>
                   </div>
-                  <div>
+                  <div className='divvvvvvvv'>
                       {complaints.map((cc) => (
                         <div className="tableHead" key={cc._id}>
                           <span className="headings">{cc.studentRegNo}</span>
@@ -66,6 +80,8 @@ const Complaint = (props) => {
                           <span className="studentComments">{cc.studentComments ? cc.studentComments : "--" }</span>
                           <span className="headings">{cc.isResolvedStatus ? "true" : "false"}</span>
                           <span className="headings">{new Date(cc.createdAt).toLocaleDateString()} {new Date(cc.createdAt).toLocaleTimeString()}</span>
+                          <span className="headings">{!cc.isResolvedStatus ? <button className="headings" onClick={(e) => handleResolve(cc.complaintId)}>Mark as Resolved</button> : <>Resolved</>}</span>
+
                         </div>
                       ))}
                   </div>
