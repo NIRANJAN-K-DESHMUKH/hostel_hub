@@ -12,8 +12,8 @@ const Profile = (props) => {
     return (
         <>
         { toShow 
-            ? <div>
-                <h1>profile page </h1>
+            ? <div className="divvv">
+                <h1>Profile Page </h1>
                 <p name="studName" className='studentdetails'>Name: {student.studentName}</p>
                 <p name="studName" className='studentdetails'>Reg. No.: {student.studentRegNo}</p>
                 <p name="studRoomNo" className='studentdetails'>Hostel Block: {student.hostelBlockName}</p>
