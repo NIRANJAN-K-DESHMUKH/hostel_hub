@@ -6,3 +6,10 @@ body {
     background-color: #18191a;
     height: 90vh;
 }
+
+hr {
+    color: white;
+    background-color: white;
+    height: 0.5px;
+    width: 100%;
+}
