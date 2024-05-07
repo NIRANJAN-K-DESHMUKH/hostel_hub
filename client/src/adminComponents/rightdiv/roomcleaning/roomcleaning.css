@@ -23,3 +23,10 @@
 .tableHead .headings {
     flex: 1;
 }
+
+
+.divvvvvvvv {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 20px;
+}
