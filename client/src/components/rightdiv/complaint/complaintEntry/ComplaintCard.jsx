@@ -10,7 +10,7 @@ const ComplaintCard = (props) => {
         
           <span className="headings">{complaint.studentRegNo}</span>
       
-          <span className="headings">{complaint.room_number}</span>
+          {/* <span className="headings">{complaint.room_number}</span> */}
     
           <span className="studentComments">{complaint.studentComments ? complaint.studentComments : "--" }</span>
       
@@ -18,7 +18,6 @@ const ComplaintCard = (props) => {
 
           <span className="headings">{new Date(complaint.createdAt).toLocaleDateString()} {new Date(complaint.createdAt).toLocaleTimeString()}</span>
 
-          <span className="headings">{complaint.isResolvedStatus ? "true" : <input type="text"/>}</span>
 
       </div>
       } 
