@@ -8,10 +8,10 @@ const initialData = {
 
     ],
     showComponentsAdmin : [
-        {id: "dashboard", show: true},
+        {id: "dashboard", show: false},
         {id: "cleaning", show: false},
         {id: "complaint", show: false},
-        {id: "profile", show: false},
+        {id: "profile", show: true},
         {id: "worker", show: false},
 
     ],

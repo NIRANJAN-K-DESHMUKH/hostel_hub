@@ -22,7 +22,8 @@ router.post("/register", async (req, res) => {
                 studentComments: req.body.studentComments,
                 workerId: "",
                 isResolvedStatus: false,
-                otp: Math.floor(100000 + Math.random() * 900000)
+                otp: Math.floor(100000 + Math.random() * 900000),
+                complaintId: 3
               });
           
               //save complaint and respond

@@ -1,6 +1,20 @@
+import { useState } from "react";
 
 const CleaningCard = (props) => {
     const cleaningreq = props.cleaningreq;
+    const [otp, setotp] = useState("");
+
+
+    const checkOTP = async (event) => {
+        event.preventDefault();
+
+        if(cleaningreq.otp == otp) {
+          console.log("correct otp");
+          await axios.put()
+        } else {
+          console.log("incorrect otp");
+        }
+    }
 
     return (
       <>
@@ -17,6 +31,14 @@ const CleaningCard = (props) => {
 
           {/* <span className="headings">{cleaningreq.updatedAt.slice(0, 10)+" "+cleaningreq.updatedAt.slice(11, 13)}</span> */}
           <span className="headings">{new Date(cleaningreq.createdAt).toLocaleDateString()} {new Date(cleaningreq.createdAt).toLocaleTimeString()}</span>
+
+          <span className="headings">{cleaningreq.isCompletedStatus ? "" : 
+          <form onSubmit={checkOTP}>
+            <input type="text" size="6" placeholder="Enter OTP" required value={otp} onChange={(e) => setotp(e.target.value)}/> 
+            <button type="submit">Submit</button>
+          </form> }
+          </span>
+
         </div>
       } 
       </>

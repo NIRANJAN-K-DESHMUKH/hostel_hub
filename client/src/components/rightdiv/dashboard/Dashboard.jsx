@@ -30,7 +30,7 @@ const Dashboard = (props) => {
             //   })
             // );
             setCleaningReqs(
-              res.data.reverse()
+              res.data
             );
             // console.log(cleaningReqs);
           } catch (error) {
@@ -48,7 +48,7 @@ const Dashboard = (props) => {
               // console.log(res.data);
 
           setComplaints(
-            res.data.reverse()
+            res.data
           );
           // console.log(cleaningReqs);
         } catch (error) {
@@ -75,8 +75,10 @@ const Dashboard = (props) => {
                         <span className="studentComments">Student Comments</span>
                         <span className="headings">Completed Status</span>
                         <span className="headings">Date (m/d/yyyy)</span>
+                        <span className="headings">Enter OTP</span>
+
                     </div>
-                    <div>
+                    <div className="mapData">
                     {cleaningReqs.map((c) => (
                         c.map((cc) => (
                           <CleaningCard key={cc._id} cleaningreq={cc} />
@@ -95,8 +97,9 @@ const Dashboard = (props) => {
                         <span className="studentComments">Student Comments</span>
                         <span className="headings">Resolved Status</span>
                         <span className="headings">Date (m/d/yyyy)</span>
+                        <span className="headings">Enter OTP</span>
                     </div>
-                    <div>
+                    <div className="mapData">
                         {complaints.map((cc) => (
                             <ComplaintCard key={cc._id} complaint={cc} />
                           ))}

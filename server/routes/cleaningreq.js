@@ -1,36 +1,79 @@
 import CleaningReq from "../models/CleaningReq.js";
 import Student from "../models/Student.js";
+import Worker from "../models/Worker.js";
+
 import express from "express";
 const router = express.Router();
 
+
+const accountSid = process.env.ACCOUNT_SID;
+const authToken = process.env.AUTHTOKEN;
+import twilio from "twilio";
+const client = twilio(accountSid, authToken);
 
 // create
 router.post("/register", async (req, res) => {
     if(req.body.isStudent) {
         try {
+          // console.log("a1");
 
            //find if already present 
            const presentComplaints = await CleaningReq.find({room_number: req.body.room_number, isCompletedStatus: false});  
-            
+          //  console.log(presentComplaints.length);
+          //  console.log("a2");
+
            if(presentComplaints.length > 0) {
              // do not allow
+            //  console.log("a10");
+             console.log("previous request is already in Queue!");
              return res.status(403).json("previous request is already in Queue!");
 
            } else {
             //assign worker
+            //count requests
+            const allReqs = await CleaningReq.find();
+            const workers = await Worker.find();
 
-            //create new cleaningreq
+            const assignedWorker = (allReqs.length % workers.length)+1;
+
+            //find Worker phone
+            const workerDetails = await Worker.find({workerId: "W"+assignedWorker});
+            const workerPhone = workerDetails[0].workerPhone_no;
+            console.log(workerPhone);
+
+
+            //send otp
+            const sendMsg = async (body) => {
+              const msgText = {
+                from: "+14247049516",
+                to: `+91${workerPhone}`,
+                body
+              }
+              try {
+                const message = await client.messages.create(msgText);
+              console.log(message);
+              } catch (error) {
+                console.log(error);
+              }
+            }
+            const otp = Math.floor(100000 + Math.random() * 900000);
+
+            // create new cleaningreq
             const newCleaningReq = new CleaningReq({
               studentRegNo: req.body.studentRegNo,
               room_number: req.body.room_number,
               studentComments: req.body.studentComments,
-              workerId: "",
-              isCompletedStatus: false,
-              otp: Math.floor(100000 + Math.random() * 900000)
+              workerId: "W"+assignedWorker,
+              isCompletedStatus: true,
+              otp: otp,
+              cleaningreqId: allReqs.length+1
             });
-           
+                    //  console.log("a5");
+
             //save cleaningreq and respond
             const cleaningreq = await newCleaningReq.save();
+            const cleanreqId = allReqs.length+1;
+            sendMsg("\n\nFrom HostelHub\n\nRequest Id: "+cleanreqId+"\nRoom No.: " +req.body.room_number+ "\nRoom Cleaning OTP is: "+otp);
             return res.status(200).json(cleaningreq);
           }
           } catch (err) {

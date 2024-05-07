@@ -56,16 +56,13 @@ function takeCommand(message){
       handlesetComments(message);
     }
     else if(message.includes("submit request")){
-      speak("Cleaning Request submitted.");
-      setSpokenContent(message);
       buttonElement.click();
-      setContentText("Cleaning Request submitted.");
+      setSpokenContent(message);
     }
     else {
         speak("Could not Recognise");
     }
 }
-
 
     const student = useSelector((state) => {
       return state.Reducers.user;
@@ -76,7 +73,8 @@ function takeCommand(message){
       if(student){
         try {
           const res = await axios.post("/api/cleaningreq/register", 
-            { studentRegNo: student.studentRegNo,
+            { 
+              studentRegNo: student.studentRegNo,
               room_number: student.room_number,
               studentComments: comments,
               isStudent: true
@@ -84,6 +82,7 @@ function takeCommand(message){
           );
           setComments("");
         } catch (error) {
+          console.log(error);
           alert("Could not register your cleaning request! 🙁\n\nYour last request is already in Queue, you can only put a new one when the previous one is completed.\nOr\nYou are not connected to internet.");
         }
       } else {

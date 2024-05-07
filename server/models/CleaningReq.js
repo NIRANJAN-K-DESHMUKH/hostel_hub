@@ -3,6 +3,11 @@ import mongoose from "mongoose";
 //schema design
 const cleaningreqSchema = new mongoose.Schema(
   {
+    cleaningreqId: {
+      type: Number,
+      required: [true, "Id is required"],
+      unique: true,
+    },
     studentRegNo: {
       type: String,
       required: [true, "RegNo is required"],

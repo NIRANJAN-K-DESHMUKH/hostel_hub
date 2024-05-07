@@ -3,6 +3,11 @@ import mongoose from "mongoose";
 //schema design
 const complaintSchema = new mongoose.Schema(
   {
+    complaintId: {
+      type: Number,
+      required: [true, "Id is required"],
+      unique: true,
+    },
     studentRegNo: {
       type: String,
       required: [true, "RegNo is required"]
