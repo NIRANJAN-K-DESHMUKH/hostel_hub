@@ -81,8 +81,11 @@ function takeCommand(message){
             }
           );
           setComments("");
+          if(res.status===200){
+            alert("Cleaning Request Submitted Successfully 😊");
+          }
         } catch (error) {
-          console.log(error);
+          // console.log(error);
           alert("Could not register your cleaning request! 🙁\n\nYour last request is already in Queue, you can only put a new one when the previous one is completed.\nOr\nYou are not connected to internet.");
         }
       } else {
@@ -112,11 +115,12 @@ function takeCommand(message){
                   <button className="talk" onClick={handleVoiceClick}>
                     <i className="fas fa-microphone-alt">
                     </i>
-                    <span className="iconText">Click here to speak.</span>
+                    <span className="iconText">Click here to speak</span>
                   </button>
                   <h1 className="content">{contentText}</h1>
                 </div>
-                <span>Speech Recognition: {spokenContent}</span>
+                <span className='speechRecog'>Speech Recognition: {spokenContent}</span>
+
               </div> 
             : <></> 
         }
