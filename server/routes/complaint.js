@@ -10,11 +10,14 @@ router.post("/register", async (req, res) => {
             //find if already present 
             const presentComplaints = await Complaint.find({studentRegNo: req.body.studentRegNo, isResolvedStatus: false});  
             
-            if(presentComplaints.length > 0) {
+            if(presentComplaints.length > 2) {
               // do not allow
               return res.status(403).json("previous complaint is already in Queue!");
 
             } else {
+              //count
+              const allReqs = await Complaint.find();
+
               //create new complaint
               const newComplaint = new Complaint({
                 studentRegNo: req.body.studentRegNo,
@@ -23,7 +26,7 @@ router.post("/register", async (req, res) => {
                 workerId: "",
                 isResolvedStatus: false,
                 otp: Math.floor(100000 + Math.random() * 900000),
-                complaintId: 3
+                complaintId: allReqs.length+1
               });
           
               //save complaint and respond
@@ -93,6 +96,23 @@ router.put("/:id", async (req, res) => {
     } else {
         return res.status(403).json("Student not logged in.");
     }
+});
+
+
+//update using patch
+router.patch("/:id", async (req, res) => {
+  if(req.body.isAdmin) {
+    try {
+      const complaint = await Complaint.findOneAndUpdate({complaintId: req.params.id}, {
+        $set: {isResolvedStatus: req.body.isResolvedStatus}
+      });
+      return res.status(200).json("complaint has been updated");
+    } catch (err) {
+      return res.status(500).json(err);
+    }
+  } else {
+      return res.status(403).json("Admin not logged in.");
+  }
 });
 
 
